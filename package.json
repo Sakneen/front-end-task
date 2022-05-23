@@ -1,0 +1,23 @@
+{
+  "name": "front-end-task",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start:server": "json-server -p 3005 db.json",
+    "dev": "concurrently \"yarn start:server\" \"next dev\"",
+    "build": "next build",
+    "start": "concurrently \"yarn start:server\" \"next start\"",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "concurrently": "^7.2.1",
+    "json-server": "^0.17.0",
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "eslint": "8.16.0",
+    "eslint-config-next": "12.1.6"
+  }
+}
