@@ -11,7 +11,7 @@ In this exercise you will be implementing a new page that will have a table disp
 - Clicking on the image in the gallery column should open a **light box** viewing all the images for that unit
 
 ## Notes
-- The `API` used for fetching the data is `http:localhost:3005/listings`
+- The `API` used for fetching the data is `http://localhost:3005/listings`
 - Feel free to add any cool tricks showing off your skills (testing, caching, SEO, re-rendering optimizations...).
 - If anything is ambiguous or not clear, update the `README.MD` file with your assumptions
 - The total number of records returned from the API is **50**
