@@ -1,5 +1,13 @@
 .container {
   padding: 0 2rem;
+
+  /* for IE and edge */
+  -ms-overflow-style: none;
+}
+
+/* for chrome , safari and opera*/
+.container::-webkit-scrollbar{
+  display: none;
 }
 
 .main {
@@ -17,7 +25,7 @@
   flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
