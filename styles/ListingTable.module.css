@@ -1,0 +1,109 @@
+.listingTable .tableRow:nth-child(even) {
+   background-color: #ffffff;
+}
+
+.listingTable .tableRow{
+   background-color: #F5F5F5;
+}
+
+
+.tableRow{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 16px;
+   
+      width: 1222px;
+      height: 50px;
+   
+      /* White */
+   
+      background: #FFFFFF;
+      /* soft border/bottom */
+   
+      box-shadow: inset 0px -1px 0px #E5E5E5;
+}
+
+.th{
+   text-align: left;
+      width: 100px;
+      height: 21px;
+   
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 21px;
+      /* identical to box height */
+   
+   
+      color: #000000;
+}
+
+.td{
+   
+   width: 100px;
+   height: 18px;
+
+   font-family: 'DM Sans';
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 18px;
+
+   color: #000000;
+
+
+   /* Inside auto layout */
+
+   flex: none;
+   order: 1;
+   flex-grow: 0;
+}
+
+.saleButton{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 6px;
+  
+      background: #2419BE;
+      border-radius: 3px;
+
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      font-family: 'DM Sans';
+      color: white;
+
+      transition: transform 0.5s ease-in-out;
+
+     
+}
+
+.notSaleButton {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   padding: 6px;
+
+   background: #696878;
+   border-radius: 3px;
+
+   font-size: 11px;
+   letter-spacing: 0.8px;
+   font-family: 'DM Sans';
+   color: white;
+
+   transition: transform 0.5s ease-in-out;
+
+
+}
+
+.saleButton:hover{
+   transform: scale(1.1);
+   cursor: pointer;
+}
+
+.listingImg{
+   width: 40px;
+   height: 40px;
+}
