@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+
+.header{
+      width: 1222px;
+      height: 31px;
+   
+      /* Headline 5 */
+   
+      font-family: 'DM Sans', sans-serif;;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 31px;
+   
+      color: #000000;
+}
+
+
+.breadCrumb{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px;
+      gap: 8px;
+   
+      width: 1222px;
+      height: 42px;
+   
+      background: #FFFFFF;
+      border-radius: 4px;
+}
+
+.breadCrumbText{
+      height: 14px;
+   
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 14px;
+      letter-spacing: 0.4px;
+      text-transform: capitalize;
+   
+      /* Grey/Dark */
+   
+      color: #616161;
+}
