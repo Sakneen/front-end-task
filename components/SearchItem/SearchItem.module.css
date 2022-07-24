@@ -1,0 +1,28 @@
+.SearchItem {
+
+    color: white;
+}
+
+.info {
+    padding: .9em 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media(max-width:750px) {
+    .info {
+        display: block;
+    }
+}
+
+.info_item {
+    background-color: orange;
+    padding: .2em .8em;
+    border-radius: 5px;
+}
+
+@media(max-width:750px) {
+    .info_item {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,25 @@
+.pagButton {
+    margin: 0 1em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+@media(max-width:750px) {
+    .pagButton {
+        margin: 0 .1em;
+    }
+}
+
+.myOrange {
+    background-color: orange;
+}
+
+.myWhite {
+    background-color: rgba(253, 253, 253, 0.3);
+}
