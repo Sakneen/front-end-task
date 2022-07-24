@@ -1,0 +1,16 @@
+.myIcon {
+    margin-left: 1.8em;
+    font-size: 2.3em;
+    cursor: pointer;
+    color: white !important;
+}
+
+.myCard{
+    border-radius: 1em;
+    background-color: #fdfdfd4d;
+    color: #fdfdfd;
+}
+
+.myh3{
+    text-transform: capitalize;
+}

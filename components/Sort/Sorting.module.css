@@ -1,0 +1,11 @@
+.down{
+    color: orange;
+    font-size: 1.8em;
+    margin-right: .3em;
+    cursor: pointer;
+}
+.up{
+    color: orange;
+    font-size: 1.8em;
+    cursor: pointer;
+}

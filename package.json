@@ -11,11 +11,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "concurrently": "7.3.0",
     "json-server": "^0.17.0",
     "next": "12.2.2",
     "react": "18.2.0",
+    "react-bootstrap": "^2.4.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "yarn-check": "^0.0.3"
   },
   "devDependencies": {
