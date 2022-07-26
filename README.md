@@ -1,52 +1,34 @@
-# Sakneen Front End Task
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-:wave: This is a NextJS React app interview challenge. Please fork this repo, and push your code to a branch in your forked repo (following the instructions below).
+## Getting Started
 
-In this exercise you will be implementing a new page that will have a table displaying a bunch of units (apartments, villas...). The design can be found [here](https://www.figma.com/file/SYWCrd5A18H44UoxJBfUW2/Frontend-task?node-id=0%3A1) You might need to sign up to be able to inspect the figma design
+First, run the development server:
 
-Note, it's not required to implement all these features, but implement what you can, Also, do the best you can for file structure and code best practices, Good Luck.
-
-## Requirements
-- Create a page that **mimics** the given design in terms of style.
-- The table **must support** pagination and sorting functionalities
-- The table **must support** searching by unit id functionally
-- Clicking on the image in the gallery column should open a **light box** viewing all the images for that unit
-- Add some unit test cases as you can.
-- Let your imagination make  the design of task responsive.
-
-## Notes
-- The `API` used for fetching the data is `http://localhost:3005/listings`
-- Feel free to add any cool tricks showing off your skills (testing, caching, SEO, re-rendering optimizations...).
-- If anything is ambiguous or not clear, update the `README.MD` file with your assumptions
-- The total number of records returned from the API is **50**
-- we use the [json server](https://www.npmjs.com/package/json-server) spec.
-## API Specification
-
-### Response 
-```js
-[{
-_id: "541kn1i4j51092j45i124nj" // The database generated id for the given record
-unit_id: "A-17" // A unique identifier for the unit in it's location
-unit_type: "penthouse",
-total_price: 1000000 // The evaluation of the unit's value
-for_sale: boolean // a Flag indicating if the units is for sale or not
-photos:[
-    'https://image1.com',
-    'https://image1.com',
-    'https://image1.com',
-] // An array of urls for the units images
-}]
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
-### Input
-- `_page`: A number to indicate the page needed.
-- `_limit`: An optional parameter to indicate the limit of the result set size
-- `_sort`: An optional parameter to sort by a certain field name 
-- `_order`: An optional parameter for sort direction (asc or desc)
-- `unitId`: Used to filter the units with their unit id value
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Instructions for submit
-1. Fork this repository
-2. create feature branch like: `feature/<your-full-name>`
-3. Open pull request from your branch on our repository
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -1,0 +1,108 @@
+.table{
+    box-shadow: 0px 0px 5px 0px #8b8888;
+    width: 100%;
+}
+
+.head tr {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    height: 60px;
+    align-items: center;
+}
+
+
+
+.head tr td  , .row td{
+    width: calc(85%/6);
+    font-weight: 700;
+    height: 32px;
+    line-height: 2;
+    
+}
+
+ 
+.row tr{
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    align-items: center;
+}
+
+
+.row tr:nth-of-type(even){
+    background-color: white;
+}
+
+.row tr:hover{
+    background:#b5f1f1ab
+}
+
+.row img{
+    cursor: pointer;
+}
+
+.row td{
+    font-weight: 400;
+    font-family: sans-serif;
+}
+
+.row tr td span {
+    background: #5c5c5f8a;
+    padding: 4px 10px;
+    border-radius: 7px;
+    color: white;
+    
+}
+.row tr td p {
+    background: #0000ff8a;
+    padding: 0px 10px;
+    border-radius: 7px;
+    color: white;
+    width: fit-content;
+    
+}
+
+
+.nums{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.nums button{
+    background-color: #d5cfcf;
+    border-radius: 20px;
+    margin: 2px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .1s;
+    border: none;
+    box-shadow: none;  
+}
+
+.nums button:hover{
+    transform: scale(1.2);
+    background-color: #260cc457;
+}
+
+.manyrows{
+    margin-right: 8px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.showrows{
+    margin-left: 8px;
+    margin-right: 100px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+
+
+
+
+
+

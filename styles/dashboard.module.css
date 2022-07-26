@@ -1,0 +1,67 @@
+.main{
+    width: 85%;
+    margin: 30px auto;
+
+   
+}
+
+.dash{
+    font-weight: 500;
+    display: block;
+    font-size: 26px;
+}
+
+.nav{
+    background-color: white;
+    height: 38px;
+    padding-left: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+
+
+.form{
+     margin-top: 20px;
+     margin-bottom: 20px;
+}
+
+.form label{
+    font-weight: 700;
+    margin-right: 14px;
+}
+
+.form input{
+    height: 28px;
+    padding-left: 10px;
+    border: none;
+    box-shadow: 0px 1px 2px 0px #858181;
+    background: #ffffffa1;
+}
+
+
+/* .table{
+    color:red
+} */
+
+.form input::placeholder{
+    opacity: .7;
+}
+
+.form select{
+    border: none;
+    background: #f5f4f4;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100px;
+
+}
+
+
+.manyrows{
+    margin-left: 100px;
+}
+
+
