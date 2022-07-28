@@ -1,9 +1,9 @@
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/home.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to Sakneen Task</h1>
 
@@ -12,7 +12,7 @@ export default function Home() {
         </Link>
       </main>
 
-      <footer className={styles.footer}>
+      <footer>
         <a href="mailto:info@sakneen.com "> Contact us: info@sakneen.com</a>
       </footer>
     </div>
