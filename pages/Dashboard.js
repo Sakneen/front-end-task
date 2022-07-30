@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import styles from "../styles/units-list.module.css";
+import { useState } from "react";
+import SelectButton from "../components/SelectButton";
+import Table from "../components/table";
+import styles from "../styles/dashboard.module.css";
 
-const List = () => {
+const Dashboard = () => {
+  const sortOptions = ["Unit ID", "Unit type", "Unit price"];
+  const [sortValue, setSortValue] = useState(sortOptions[0]);
   return (
     <div className="container">
       <nav className={styles.nav}>
-        <Link href="/" target="_blank" rel="noopener noreferrer">
+        <Link href="/" target="_blank">
           <span className={styles.logo}>
             <Image src="/fav.png" alt="Sakneen Logo" width={25} height={25} />
           </span>
@@ -31,19 +35,16 @@ const List = () => {
           <span className={styles.sort}>
             <Image src="/sort.png" alt="sort icon" width={16} height={16} />
             <span>sort by:</span>
-            <select className={styles.select}>
-              <option value="id" className={styles.option}>
-                Unit ID
-              </option>
-              <option value="type" className={styles.option}>
-                Unit type
-              </option>
-              <option value="price" className={styles.option}>
-                Unit price
-              </option>
-            </select>
+            <SelectButton
+              value={sortValue}
+              options={sortOptions}
+              onChange={(value) => {
+                setSortValue(value);
+              }}
+            />
           </span>
         </div>
+        <Table />
       </main>
       <footer>
         <a href="mailto:info@sakneen.com "> Contact us: info@sakneen.com</a>
@@ -52,4 +53,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Dashboard;
