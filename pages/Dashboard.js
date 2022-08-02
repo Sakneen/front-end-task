@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import SelectButton from "../components/SelectButton";
-import Table from "../components/table";
+import UnitsTable from "../components/UnitsTable";
 import styles from "../styles/dashboard.module.css";
 import services from "../services";
+import { CircularProgress } from "@mui/material";
 
 const Dashboard = () => {
   const sortOptions = ["Unit ID", "Unit type", "Unit price"];
@@ -27,6 +28,7 @@ const Dashboard = () => {
   useEffect(() => {
     loadMore();
   }, []);
+
   return (
     <div className="container">
       <nav className={styles.nav}>
@@ -63,7 +65,9 @@ const Dashboard = () => {
             />
           </span>
         </div>
-        <Table />
+        <div className={styles.tableContainer}>
+          {units.length ? <UnitsTable units={units} /> : <CircularProgress />}
+        </div>
       </main>
       <footer>
         <a href="mailto:info@sakneen.com "> Contact us: info@sakneen.com</a>
