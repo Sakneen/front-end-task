@@ -1,13 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectButton from "../components/SelectButton";
 import Table from "../components/table";
 import styles from "../styles/dashboard.module.css";
+import services from "../services";
 
 const Dashboard = () => {
   const sortOptions = ["Unit ID", "Unit type", "Unit price"];
   const [sortValue, setSortValue] = useState(sortOptions[0]);
+  const [units, setUnits] = useState([]);
+
+  console.log(units);
+  const loadMore = async () => {
+    const response = await services.getUnits({
+      params: {
+        _page: 1,
+        _limit: 5,
+        //  _sort: ,
+        //  _order: ,
+        //  unitId: ,
+      },
+    });
+    setUnits(response.data);
+  };
+  useEffect(() => {
+    loadMore();
+  }, []);
   return (
     <div className="container">
       <nav className={styles.nav}>
