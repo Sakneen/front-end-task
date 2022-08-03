@@ -1,0 +1,21 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 60vw;
+  margin-inline: 2rem;
+}
+
+.arrow {
+  width: 40px;
+  padding: 10px;
+}
