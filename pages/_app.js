@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Sakneen</title>
-        <link rel="icon" href="/fav.png" />
+        <link rel="icon" href="/imgs/fav.png" />
       </Head>
       <Component {...pageProps} />
     </>

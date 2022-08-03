@@ -15,7 +15,7 @@ const ImageSlider = ({ sliderImages, open, onClose }) => {
         }}
       >
         <img
-          src="/left-arrow.png"
+          src="/imgs/left-arrow.png"
           alt="left arrow"
           className={styles.arrow}
           onClick={() =>
@@ -30,7 +30,7 @@ const ImageSlider = ({ sliderImages, open, onClose }) => {
           />
         </Zoom>
         <img
-          src="/right-arrow.png"
+          src="/imgs/right-arrow.png"
           alt="right image"
           className={styles.arrow}
           onClick={() => setIndex((index + 1) % sliderImages.length)}
