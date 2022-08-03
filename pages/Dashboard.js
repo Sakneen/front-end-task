@@ -1,18 +1,18 @@
+import { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
 import SelectButton from "../components/SelectButton";
 import UnitsTable from "../components/UnitsTable";
 import styles from "../styles/dashboard.module.css";
 import services from "../services";
-import { CircularProgress } from "@mui/material";
 
 const Dashboard = () => {
   const sortOptions = ["Unit ID", "Unit type", "Unit price"];
   const [sortValue, setSortValue] = useState(sortOptions[0]);
   const [units, setUnits] = useState([]);
 
-  console.log(units);
   const loadMore = async () => {
     const response = await services.getUnits({
       params: {
