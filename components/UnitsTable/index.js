@@ -40,7 +40,7 @@ const UnitsTable = ({ units = [] }) => {
               </td>
               <td>
                 <img
-                  src={unit.photos[0] ?? "/fav.png"}
+                  src={unit.photos[0] ?? "/imgs/fav.png"}
                   alt="unit image"
                   width={40}
                   height={40}

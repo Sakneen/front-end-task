@@ -59,3 +59,9 @@
   min-height: 6rem;
   background-color: #fff;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 2rem;
+}
