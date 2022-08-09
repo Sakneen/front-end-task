@@ -23,7 +23,6 @@ const SelectButton = ({ index, onChange = () => null, options = [] }) => {
       <Popover
         disableScrollLock
         open={isOpen}
-        anchorReference={anchorEl}
         anchorEl={anchorEl}
         onClose={handleClose}
       >

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Pagination, ThemeProvider } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,27 +7,23 @@ import SelectButton from "../components/SelectButton";
 import UnitsTable from "../components/UnitsTable";
 import styles from "../styles/dashboard.module.css";
 import services from "../services";
+import { useRouter } from "next/router";
+import theme from "../public/assets/theme";
 
-const Dashboard = () => {
+const totalUnits = 50;
+const pageLimit = 10;
+
+const Dashboard = ({ units }) => {
   const sortOptions = ["Unit ID", "Unit type", "Unit price"];
+  const sortBy = ["unit_id", "unit_type", "total_price"];
   const [sortValue, setSortValue] = useState(sortOptions[0]);
-  const [units, setUnits] = useState([]);
 
-  const loadMore = async () => {
-    const response = await services.getUnits({
-      params: {
-        _page: 1,
-        _limit: 5,
-        //  _sort: ,
-        //  _order: ,
-        //  unitId: ,
-      },
-    });
-    setUnits(response.data);
-  };
-  useEffect(() => {
-    loadMore();
-  }, []);
+  const router = useRouter();
+
+  let page = Number(router.query.page);
+  if (page === 0 || Number.isNaN(page)) page = 1;
+
+  const count = totalUnits / pageLimit;
 
   return (
     <div className="container">
@@ -57,16 +53,43 @@ const Dashboard = () => {
             <Image src="/sort.png" alt="sort icon" width={16} height={16} />
             <span>sort by:</span>
             <SelectButton
-              value={sortValue}
+              index={sortOptions.indexOf(sortValue)}
               options={sortOptions}
-              onChange={(value) => {
-                setSortValue(value);
+              onChange={(index) => {
+                setSortValue(sortOptions[index]);
+                router.push(
+                  {
+                    pathname: router.pathname,
+                    query: { ...router.query, sort: sortBy[index] },
+                  },
+                  null,
+                  { scroll: false }
+                );
               }}
             />
           </span>
         </div>
         <div className={styles.tableContainer}>
           {units.length ? <UnitsTable units={units} /> : <CircularProgress />}
+        </div>
+        <div className={styles.pagination}>
+          <ThemeProvider theme={theme}>
+            <Pagination
+              count={count}
+              color="primary"
+              page={page}
+              onChange={(e, page) => {
+                router.push(
+                  {
+                    pathname: router.pathname,
+                    query: { ...router.query, page },
+                  },
+                  null,
+                  { scroll: false }
+                );
+              }}
+            />
+          </ThemeProvider>
         </div>
       </main>
       <footer>
@@ -75,5 +98,22 @@ const Dashboard = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const { page, sort } = context.query;
+
+  const { data: units } = await services.getUnits({
+    params: {
+      _page: page,
+      _limit: pageLimit,
+      _sort: sort,
+    },
+  });
+  return {
+    props: {
+      units,
+    },
+  };
+}
 
 export default Dashboard;
