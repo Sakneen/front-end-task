@@ -9,7 +9,7 @@
   margin: 1rem;
 }
 .main {
-  padding: 0.5rem 6rem;
+  padding: 8vh 8vw;
 }
 .subtitle {
   font-size: 1.5rem;
@@ -59,6 +59,7 @@
   align-items: center;
   min-height: 6rem;
   background-color: #fff;
+  overflow: auto;
 }
 .pagination {
   display: flex;
