@@ -17,7 +17,6 @@ const Dashboard = ({ units }) => {
   const sortOptions = ["Unit ID", "Unit type", "Unit price"];
   const sortBy = ["unit_id", "unit_type", "total_price"];
   const [sortValue, setSortValue] = useState(sortOptions[0]);
-
   const router = useRouter();
 
   let page = Number(router.query.page);
@@ -47,7 +46,20 @@ const Dashboard = ({ units }) => {
         <div className={styles.controllers}>
           <span>
             <span className={styles.filter}>Filters by ID:</span>
-            <input className={styles.input} placeholder="ex: 56487" />
+            <input
+              className={styles.input}
+              placeholder="ex: 56487"
+              onInput={(e) => {
+                router.push(
+                  {
+                    pathname: router.pathname,
+                    query: { ...router.query, id: e.target.value },
+                  },
+                  null,
+                  { scroll: false }
+                );
+              }}
+            />
           </span>
           <span className={styles.sort}>
             <Image src="/sort.png" alt="sort icon" width={16} height={16} />
@@ -100,13 +112,15 @@ const Dashboard = ({ units }) => {
 };
 
 export async function getServerSideProps(context) {
-  const { page, sort } = context.query;
+  const { page, sort, id } = context.query;
 
   const { data: units } = await services.getUnits({
     params: {
       _page: page,
       _limit: pageLimit,
       _sort: sort,
+      ///the endpoint does not filter by unitId
+      unitId: id,
     },
   });
   return {

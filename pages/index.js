@@ -7,7 +7,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to Sakneen Task</h1>
 
-        <Link href="/Dashboard">
+        <Link href="/dashboard">
           <a className={styles.description}>Display units</a>
         </Link>
       </main>
