@@ -11,10 +11,6 @@ export default function Home() {
           <a className={styles.description}>Display units</a>
         </Link>
       </main>
-
-      <footer>
-        <a href="mailto:info@sakneen.com "> Contact us: info@sakneen.com</a>
-      </footer>
     </div>
   );
 }

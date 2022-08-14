@@ -9,6 +9,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/imgs/fav.png" />
       </Head>
       <Component {...pageProps} />
+      <footer>
+        <a href="mailto:info@sakneen.com "> Contact us: info@sakneen.com</a>
+      </footer>
     </>
   );
 }
