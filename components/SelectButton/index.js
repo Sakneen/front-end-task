@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, MenuItem, MenuList, Popover } from "@mui/material";
 import styles from "./styles.module.css";
-const SelectButton = ({ index, onChange = () => null, options = [] }) => {
+const SelectButton = ({ value, onChange = () => null, options = [] }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -18,7 +18,7 @@ const SelectButton = ({ index, onChange = () => null, options = [] }) => {
           setAnchorEl(event.currentTarget);
         }}
       >
-        {options[index]}
+        {value}
       </Button>
       <Popover
         disableScrollLock
@@ -27,16 +27,16 @@ const SelectButton = ({ index, onChange = () => null, options = [] }) => {
         onClose={handleClose}
       >
         <MenuList>
-          {options.map((element, index) => {
+          {options.map((option, index) => {
             return (
               <MenuItem
                 key={index}
                 onClick={() => {
-                  onChange(index);
+                  onChange(option);
                   handleClose();
                 }}
               >
-                {element}
+                {option}
               </MenuItem>
             );
           })}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CircularProgress, Pagination, ThemeProvider } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,9 +14,12 @@ const totalUnits = 50;
 const pageLimit = 10;
 
 const Dashboard = ({ units }) => {
-  const sortOptions = ["Unit ID", "Unit type", "Unit price"];
-  const sortBy = ["unit_id", "unit_type", "total_price"];
-  const [sortValue, setSortValue] = useState(sortOptions[0]);
+  const sortOptions = {
+    "Unit ID": "unit_id",
+    "Unit type": "unit_type",
+    "Unit price": "total_price",
+  };
+  const [sortValue, setSortValue] = useState(Object.keys(sortOptions)[0]);
   const router = useRouter();
 
   let page = Number(router.query.page);
@@ -33,8 +36,10 @@ const Dashboard = ({ units }) => {
           </span>
         </Link>
       </nav>
+
       <main className={styles.main}>
         <h1 className={styles.subtitle}>Dashboard</h1>
+
         <div className={styles.breadcrumbs}>
           <span className={styles.logo}>
             <Image src="/home.png" alt="home icon" width={16} height={16} />
@@ -43,6 +48,7 @@ const Dashboard = ({ units }) => {
           <span>&gt;</span>
           <span>Dashboard</span>
         </div>
+
         <div className={styles.controllers}>
           <span>
             <span className={styles.filter}>Filters by ID:</span>
@@ -53,7 +59,10 @@ const Dashboard = ({ units }) => {
                 router.push(
                   {
                     pathname: router.pathname,
-                    query: { ...router.query, id: e.target.value },
+                    query: {
+                      ...router.query,
+                      ...(e.target.value !== "" && { id: e.target.value }),
+                    },
                   },
                   null,
                   { scroll: false }
@@ -61,18 +70,22 @@ const Dashboard = ({ units }) => {
               }}
             />
           </span>
+
           <span className={styles.sort}>
             <Image src="/sort.png" alt="sort icon" width={16} height={16} />
             <span>sort by:</span>
             <SelectButton
-              index={sortOptions.indexOf(sortValue)}
-              options={sortOptions}
-              onChange={(index) => {
-                setSortValue(sortOptions[index]);
+              value={sortValue}
+              options={Object.keys(sortOptions)}
+              onChange={(key) => {
+                setSortValue(key);
                 router.push(
                   {
                     pathname: router.pathname,
-                    query: { ...router.query, sort: sortBy[index] },
+                    query: {
+                      ...router.query,
+                      sort: sortOptions[key],
+                    },
                   },
                   null,
                   { scroll: false }
@@ -81,9 +94,11 @@ const Dashboard = ({ units }) => {
             />
           </span>
         </div>
-        <div className={styles.tableContainer}>
-          {units.length ? <UnitsTable units={units} /> : <CircularProgress />}
+
+        <div className={styles["table-container"]}>
+          <UnitsTable units={units} />
         </div>
+
         <div className={styles.pagination}>
           <ThemeProvider theme={theme}>
             <Pagination
@@ -104,9 +119,6 @@ const Dashboard = ({ units }) => {
           </ThemeProvider>
         </div>
       </main>
-      <footer>
-        <a href="mailto:info@sakneen.com "> Contact us: info@sakneen.com</a>
-      </footer>
     </div>
   );
 };

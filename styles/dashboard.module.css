@@ -5,12 +5,15 @@
   width: auto;
   height: 10vh;
 }
+
 .logo {
   margin: 1rem;
 }
+
 .main {
   padding: 8vh 8vw;
 }
+
 .subtitle {
   font-size: 1.5rem;
 }
@@ -53,7 +56,7 @@
   align-items: center;
   font-size: 0.8rem;
 }
-.tableContainer {
+.table-container {
   display: flex;
   justify-content: center;
   align-items: center;
