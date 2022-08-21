@@ -8,10 +8,11 @@ import SortMenu from './sortmenu'
 
 //asc or desc
 
-const sortOptions = [
-  { id: 0, name: 'asc' },
-  { id: 1, name: 'desc' },
-]
+// const sortOptions = [
+//   { id: 0, name: 'asc' },
+//   { id: 1, name: 'desc' },
+// ]
+
 const Listings = () => {
 
   const [page, setPage] = useState('1')
