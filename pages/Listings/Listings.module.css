@@ -1,0 +1,19 @@
+
+.container {
+ /* background-color:  #F5F5F5; */
+ /* height: 1vh; */
+ /* width: 100%; */
+}
+
+.fiterSortContainer {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.paginationBarContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
