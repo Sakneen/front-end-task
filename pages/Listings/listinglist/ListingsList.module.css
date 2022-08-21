@@ -1,0 +1,39 @@
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  /* margin:  0 auto; */
+  /* -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.3); */
+}
+
+.th, .td {
+  text-align: left;
+  padding: 15px;
+
+}
+
+.tr:nth-child(odd){background-color: #f2f2f2}
+
+.notForSale {
+  background-color: #616161;
+}
+
+.forSaleText {
+  color: white;
+  padding: 5px;
+  display: inline;
+  border-radius: 5px;
+}
+/* font-size: 14px */
+
+.forSale {
+  background-color: #2419BE;
+}
+
+.container {
+  /* height: 100%; */
+ /* background-color:  #F5F5F5; */
+ /* height: 1vh; */
+}
