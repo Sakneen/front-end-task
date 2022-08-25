@@ -54,13 +54,15 @@ const Table = ({ rows = [] }) => {
               </td>
 
               <td>
-                {item.photos[0] && (
+                {item.photos[0] ? (
                   <Image
                     src={item.photos[0]}
                     width={40}
                     height={40}
                     alt={item.photos[0]}
                   />
+                ) : (
+                  <span> &#8212;</span>
                 )}
               </td>
             </tr>
