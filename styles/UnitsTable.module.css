@@ -1,0 +1,58 @@
+.tableContainer {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  overflow-x: auto;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.31), 0 4px 8px -2px rgba(0, 0, 0, 0.25);
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table td,
+.table th {
+  padding: 19px;
+  text-align: left;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.table th {
+  font-size: 16px;
+}
+
+.table thead tr {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+.table tr {
+  background-color: #f2f2f2;
+}
+.table tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.table tbody tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.table td var {
+  text-transform: none;
+}
+
+.forSale {
+  background-color: #2419be;
+  border-radius: 3px;
+  color: #fff;
+  padding: 4px 8px;
+}
+
+.notForSale {
+  background-color: #616161;
+  border-radius: 3px;
+  color: #fff;
+  padding: 4px 8px;
+}
