@@ -1,0 +1,13 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  padding: 5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+}
