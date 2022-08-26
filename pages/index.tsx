@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Dashboard from '../components/Dashboard';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
         <link rel="icon" href="/sakneen-logo.svg" />
       </Head>
       <Navbar />
+      <Dashboard />
     </>
   );
 }
