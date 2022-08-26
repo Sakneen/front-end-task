@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useState } from "react";
 import Pagination from "../components/Pagination";
 
-import Table from "../components/UnitsTable";
+import { TextInput, UnitsTable } from "../components";
 import dashboardStyles from "../styles/Dashboard.module.css";
 
 const pageSize = 5;
@@ -20,7 +19,18 @@ const Dashboard = ({ units = [] }) => {
     <div>
       <h5 className={dashboardStyles.title}>Dashboard</h5>
 
-      <Table rows={rows} />
+      <div style={{ marginBlockEnd: 20 }}>
+        <div>
+          <span>Filters by ID:</span>
+          <TextInput
+            placeholder="ex: 45785"
+            value=""
+            onChangeText={(text) => console.log(text)}
+          />
+        </div>
+      </div>
+
+      <UnitsTable rows={rows} />
 
       <Pagination
         currentPage={currentPage}
