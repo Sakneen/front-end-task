@@ -1,13 +1,28 @@
 import React, { useMemo, useState } from "react";
 import Pagination from "../components/Pagination";
 
-import { TextInput, UnitsTable } from "../components";
+import { Select, TextInput, UnitsTable } from "../components";
 import dashboardStyles from "../styles/Dashboard.module.css";
 
 const pageSize = 5;
-
+const sortData = [
+  {
+    label: "Unit ID",
+    value: "unit_id",
+  },
+  {
+    label: "Unit type",
+    value: "unit_type",
+  },
+  {
+    label: "Unit Price",
+    value: "total_price",
+  },
+];
 const Dashboard = ({ units = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   const rows = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -19,13 +34,22 @@ const Dashboard = ({ units = [] }) => {
     <div>
       <h5 className={dashboardStyles.title}>Dashboard</h5>
 
-      <div style={{ marginBlockEnd: 20 }}>
+      <div className={dashboardStyles.toolbar}>
         <div>
           <span>Filters by ID:</span>
           <TextInput
             placeholder="ex: 45785"
-            value=""
-            onChangeText={(text) => console.log(text)}
+            value={searchValue}
+            onChangeText={(value) => setSearchValue(value)}
+          />
+        </div>
+
+        <div>
+          <span>Sort by: </span>
+          <Select
+            options={sortData}
+            value={sortBy}
+            onChangeVlue={(value) => setSortBy(value)}
           />
         </div>
       </div>
