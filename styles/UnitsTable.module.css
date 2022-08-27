@@ -45,18 +45,21 @@
   text-transform: none;
 }
 
+.notForSale,
+.forSale {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 3px;
+  text-align: center;
+}
 .forSale {
   background-color: #2419be;
-  border-radius: 3px;
   color: #fff;
-  padding: 4px 8px;
 }
 
 .notForSale {
   background-color: #616161;
-  border-radius: 3px;
   color: #fff;
-  padding: 4px 8px;
 }
 
 .emptyRows {
