@@ -4,6 +4,8 @@
   font-size: 14px;
   border: none;
   cursor: pointer;
+  font-family: DM Sans;
+  padding: 0 16px;
 }
 
 .dropdown {

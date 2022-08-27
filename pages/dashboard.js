@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Pagination from "../components/Pagination";
 
 import { Select, TextInput, UnitsTable } from "../components";
 import dashboardStyles from "../styles/Dashboard.module.css";
 
 const pageSize = 5;
-const sortData = [
+const sortOptions = [
   {
     label: "Unit ID",
     value: "unit_id",
@@ -19,16 +19,55 @@ const sortData = [
     value: "total_price",
   },
 ];
+
 const Dashboard = ({ units = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState("");
+  const [sortValue, setSortValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
+
+  const filterdData = useMemo(() => {
+    let finalForamtedData = units;
+
+    if (searchValue.length) {
+      finalForamtedData = finalForamtedData.filter((unit) =>
+        unit?.["unit_id"]
+          .toLocaleLowerCase()
+          .includes(searchValue.toLocaleLowerCase())
+      );
+    }
+
+    if (sortValue.length) {
+      if (sortValue === "total_price") {
+        finalForamtedData = finalForamtedData.sort(
+          (a, b) => b?.["total_price"] - a?.["total_price"]
+        );
+      } else {
+        finalForamtedData = finalForamtedData.sort((a, b) =>
+          a?.[sortValue]?.toString()?.localeCompare(b?.[sortValue])
+        );
+      }
+    }
+
+    return finalForamtedData;
+  }, [units, searchValue, sortValue]);
 
   const rows = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return units.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    return filterdData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, filterdData, sortValue]);
+
+  //
+
+  const handleSearch = useCallback((value) => {
+    setCurrentPage(1);
+    setSearchValue(value);
+  }, []);
+
+  const handleSort = useCallback((value) => {
+    setCurrentPage(1);
+    setSortValue(value);
+  }, []);
 
   return (
     <div>
@@ -36,20 +75,20 @@ const Dashboard = ({ units = [] }) => {
 
       <div className={dashboardStyles.toolbar}>
         <div>
-          <span>Filters by ID:</span>
+          <span className={dashboardStyles.filterTitle}>Filters by ID:</span>
           <TextInput
             placeholder="ex: 45785"
             value={searchValue}
-            onChangeText={(value) => setSearchValue(value)}
+            onChangeText={handleSearch}
           />
         </div>
 
         <div>
           <span>Sort by: </span>
           <Select
-            options={sortData}
-            value={sortBy}
-            onChangeVlue={(value) => setSortBy(value)}
+            options={sortOptions}
+            value={sortValue}
+            onChangeVlue={handleSort}
           />
         </div>
       </div>
@@ -58,7 +97,7 @@ const Dashboard = ({ units = [] }) => {
 
       <Pagination
         currentPage={currentPage}
-        totalCount={units.length}
+        totalCount={filterdData.length}
         pageSize={pageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />

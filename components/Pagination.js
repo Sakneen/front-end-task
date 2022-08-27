@@ -35,28 +35,32 @@ const Pagination = ({
   return (
     <ul className={paginationStyles.paginationContainer}>
       <button
-        className={currentPage === 1 && paginationStyles.disabled}
+        className={currentPage === 1 ? paginationStyles.disabled : ""}
         onClick={onPrevious}
       >
         ❮
       </button>
-      {paginationRange.map((pageNumber) => {
+
+      {paginationRange.map((pageNumber, index) => {
         if (pageNumber === DOTS) {
-          return <li>&#8230;</li>;
+          return <li key={DOTS + index.toString()}>&#8230;</li>;
         }
 
         return (
           <li
-            key={pageNumber?.toString()}
+            key={pageNumber.toString()}
             onClick={() => onPageChange(pageNumber)}
-            className={pageNumber === currentPage && paginationStyles?.disabled}
+            className={
+              pageNumber === currentPage ? paginationStyles?.disabled : ""
+            }
           >
             {pageNumber}
           </li>
         );
       })}
+
       <button
-        className={currentPage === lastPage && paginationStyles.disabled}
+        className={currentPage === lastPage ? paginationStyles.disabled : ""}
         onClick={onNext}
       >
         ❯

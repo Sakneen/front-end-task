@@ -20,7 +20,7 @@ const Select = ({
         {options.map((option) => (
           <span
             href="#"
-            key={option}
+            key={option.value}
             onClick={() => onChangeVlue(option.value)}
           >
             {option.label}

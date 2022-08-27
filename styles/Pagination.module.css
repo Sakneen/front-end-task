@@ -43,7 +43,7 @@
   border-radius: 50%;
   cursor: pointer;
   text-align: center;
-  background-color: #fff;
+  background-color: unset;
   border: 0;
 }
 

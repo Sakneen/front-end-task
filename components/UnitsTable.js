@@ -3,11 +3,7 @@ import Image from "next/image";
 import tableStyles from "../styles/UnitsTable.module.css";
 import { convertToInternationalCurrencySystem } from "../utils/convertToInternationalCurrencySystem";
 
-const Table = ({ rows = [] }) => {
-  if (!rows.length) {
-    return <p>No Ros Found</p>;
-  }
-
+const UnitsTable = ({ rows = [] }) => {
   return (
     <div className={tableStyles.tableContainer}>
       <table className={tableStyles.table}>
@@ -28,49 +24,58 @@ const Table = ({ rows = [] }) => {
         </thead>
 
         <tbody>
-          {rows.map((item) => (
-            <tr key={item["_id"]}>
-              <td>{item.unit_id}</td>
+          {Boolean(rows.length) &&
+            rows.map((row) => (
+              <tr key={row["_id"]}>
+                <td>{row.unit_id}</td>
 
-              <td>{item.unit_type}</td>
+                <td>{row.unit_type}</td>
 
-              <td>
-                {convertToInternationalCurrencySystem(item.total_price)} EGP
-              </td>
+                <td>
+                  {convertToInternationalCurrencySystem(row.total_price)} EGP
+                </td>
 
-              <td>
-                {item.bua} <var>m</var>
-                <sup>2</sup>
-              </td>
+                <td>
+                  {row.bua} <var>m</var>
+                  <sup>2</sup>
+                </td>
 
-              <td>
-                <span
-                  className={
-                    item.for_sale ? tableStyles.forSale : tableStyles.notForSale
-                  }
-                >
-                  {item.for_sale ? "FOR SALE" : "NOT FOR SALE"}
-                </span>
-              </td>
+                <td>
+                  <span
+                    className={
+                      row.for_sale
+                        ? tableStyles.forSale
+                        : tableStyles.notForSale
+                    }
+                  >
+                    {row.for_sale ? "FOR SALE" : "NOT FOR SALE"}
+                  </span>
+                </td>
 
-              <td>
-                {item.photos[0] ? (
-                  <Image
-                    src={item.photos[0]}
-                    width={40}
-                    height={40}
-                    alt={item.photos[0]}
-                  />
-                ) : (
-                  <span> &#8212;</span>
-                )}
-              </td>
-            </tr>
-          ))}
+                <td>
+                  {row.photos[0] ? (
+                    <Image
+                      src={row.photos[0]}
+                      width={40}
+                      height={40}
+                      alt={row.photos[0]}
+                    />
+                  ) : (
+                    <span> &#8212;</span>
+                  )}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
+
+      {!Boolean(rows.length) && (
+        <div className={tableStyles.emptyRows}>
+          <span>oops... no untis found!</span>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Table;
+export default UnitsTable;

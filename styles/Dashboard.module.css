@@ -3,3 +3,21 @@
   font-size: 24px;
   color: #000000;
 }
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.toolbar div span {
+  font-size: 11px;
+}
+
+.filterTitle {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-inline-end: 16px;
+}
