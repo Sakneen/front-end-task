@@ -5,9 +5,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Image from 'next/image';
+import { useState } from 'react';
 import { IUnit } from '../interfaces/IUnit';
 
 export default function TableList({ units = [] }: { units: IUnit[] }) {
+  const [imageError, setImageError] = useState(false);
   const forSale = (
     <span className="bg-blue-800 text-white font-sans text-[9px] font-bold uppercase px-2 py-1 rounded">
       for sale
@@ -51,7 +53,12 @@ export default function TableList({ units = [] }: { units: IUnit[] }) {
               className="even:bg-white odd:bg-[#F5F5F5] border-0 hover:bg-[#F5F5F5] 
               "
             >
-              <TableCell align="left" className="text-sm">
+              <TableCell
+                component="th"
+                scope="row"
+                align="left"
+                className="text-sm"
+              >
                 {unit.unit_id.replaceAll('-', '')}
               </TableCell>
               <TableCell align="left" className="text-sm capitalize">
@@ -67,17 +74,20 @@ export default function TableList({ units = [] }: { units: IUnit[] }) {
                 {unit.for_sale ? forSale : notForSale}
               </TableCell>
               <TableCell align="left">
-                {unit?.photos[0] && (
-                  <Image
-                    layout="fixed"
-                    objectFit="cover"
-                    width={40}
-                    height={40}
-                    src={`${unit?.photos[0]}`}
-                    priority
-                    alt={unit.unit_type}
-                  />
-                )}
+                <Image
+                  layout="fixed"
+                  objectFit="cover"
+                  width={40}
+                  height={40}
+                  src={
+                    imageError
+                      ? '/default.png'
+                      : unit?.photos[0] || '/default.png'
+                  }
+                  priority
+                  alt={unit.unit_type}
+                  onError={() => setImageError(true)}
+                />
               </TableCell>
             </TableRow>
           ))}

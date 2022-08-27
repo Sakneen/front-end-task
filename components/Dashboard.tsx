@@ -1,14 +1,12 @@
 import { IUnit } from '../interfaces/IUnit';
-import SortBy from './SortBy';
+import SortAndOrder from './SortAndOrder';
 import TableList from './TableList';
 
-const options = [
-  { label: 'Unit ID', value: 'unit_id' },
-  { label: 'Unit Type', value: 'unit_type' },
-  { label: 'Total Price', value: 'total_price' },
-];
+interface Props {
+  units: IUnit[];
+}
 
-const Dashboard = ({ units }: { units: IUnit[] }) => {
+const Dashboard = ({ units }: Props) => {
   return (
     <>
       <section className="flex justify-between flex-wrap gap-3 mb-5">
@@ -21,7 +19,7 @@ const Dashboard = ({ units }: { units: IUnit[] }) => {
             className="placeholder:text-xs placeholder:font-light placeholder:text-gray-300 rounded-sm border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm shadow-sm px-2 py-2"
           />
         </label>
-        <SortBy options={options} />
+        <SortAndOrder />
       </section>
       <TableList units={units} />
     </>

@@ -2,11 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { IUnit } from '../../interfaces/IUnit';
 
-interface IParams {
+export interface IParams {
   _page?: number;
   _limit?: number;
-  _sort?: number;
-  _order?: number;
+  _sort?: 'unit_id' | 'unit_type' | 'total_price' | string;
+  _order?: 'asc' | 'desc';
   unitId?: string;
 }
 
