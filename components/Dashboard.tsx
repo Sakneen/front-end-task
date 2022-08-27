@@ -1,4 +1,5 @@
 import { IUnit } from '../interfaces/IUnit';
+import { CustomPagination } from './CustomPagination';
 import { FilterInput } from './FilterInput';
 import SortAndOrder from './SortAndOrder';
 import TableList from './TableList';
@@ -15,6 +16,7 @@ const Dashboard = ({ units }: Props) => {
         <SortAndOrder />
       </section>
       <TableList units={units} />
+      <CustomPagination />
     </>
   );
 };

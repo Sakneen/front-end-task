@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 const muiTheme = createTheme({
+  palette: { primary: { main: '#2419BE' } },
   typography: {
     fontFamily: ['DM Sans', 'sans-serif'].join(','),
   },
@@ -17,6 +18,12 @@ const muiTheme = createTheme({
     },
     MuiSelect: {
       styleOverrides: {},
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        ellipsis: { minWidth: '30px', minHeight: '30px' },
+        firstLast: { backgroundColor: 'transparent' },
+      },
     },
   },
 });
