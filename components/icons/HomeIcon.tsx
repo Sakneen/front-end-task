@@ -1,9 +1,9 @@
 const HomeIcon = () => {
   return (
     <svg
-      width="12.67"
-      height="12.67"
-      viewBox="0 0 12.67 12.67"
+      width="13"
+      height="13"
+      viewBox="0 0 13 13"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

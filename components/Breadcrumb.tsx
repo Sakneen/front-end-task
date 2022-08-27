@@ -6,6 +6,11 @@ import HomeIcon from './icons/HomeIcon';
 
 const Breadcrumb = () => {
   const router = useRouter();
+  const asPath = router.asPath.substring(1);
+
+  const acitveLink = (path: string) =>
+    path == asPath ? 'underline underline-offset-1 text-gray-500' : '';
+
   return (
     <Breadcrumbs
       aria-label="breadcrumb"
@@ -13,18 +18,14 @@ const Breadcrumb = () => {
       className="text-xs text-gray-400 my-5 font-[500]"
     >
       <Link href={'/'}>
-        <span
-          className={`flex items-baseline gap-x-2 capitalize cursor-pointer ${
-            router.pathname === '/'
-              ? 'underline underline-offset-1 text-gray-500'
-              : ''
-          }`}
-        >
+        <a className={`flex items-center gap-x-2 capitalize ${acitveLink('')}`}>
           <HomeIcon />
           Home
-        </span>
+        </a>
       </Link>
-      <Link href={'/'}>Dashboard</Link>
+      <Link href={'/dashboard'}>
+        <a className={acitveLink('dashboard')}>Dashboard</a>
+      </Link>
     </Breadcrumbs>
   );
 };
