@@ -1,5 +1,6 @@
 import React from "react";
-import tableStyles from "../styles/UnitsTable.module.css";
+
+import tableStyles from "../../styles/UnitsTable.module.css";
 import UnitRow from "./UnitRow";
 
 const UnitsTable = ({ rows = [] }) => (

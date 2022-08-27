@@ -1,5 +1,5 @@
 import Image from "next/image";
-import navStyles from "../../styles/Nav.module.css";
+import navStyles from "../../styles/layout-styles/Nav.module.css";
 
 const Nav = () => {
   return (

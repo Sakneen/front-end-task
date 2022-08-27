@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import textInputStyles from "../styles/TextInput.module.css";
+import textInputStyles from "../../styles/shared-component-styles/TextInput.module.css";
 
 const TextInput = ({ placeholder, value, onChangeText = () => null }) => {
   const handleChange = useCallback((e) => onChangeText(e.target.value), []);

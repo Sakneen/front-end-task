@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
-import modalstyles from "../styles/ImagesModal.module.css";
+
+import modalstyles from "../../styles/shared-component-styles/ImagesModal.module.css";
 
 const ImagesModal = ({ isOpen = false, onClose = () => null, images = [] }) => {
   const [imageIndex, setImageIndex] = useState(0);

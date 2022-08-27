@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback } from "react";
-import { usePagination, DOTS } from "../hooks/usePagination";
 
-import paginationStyles from "../styles/Pagination.module.css";
+import { usePagination, DOTS } from "../../hooks/usePagination";
+import paginationStyles from "../../styles/shared-component-styles/Pagination.module.css";
 
 const Pagination = ({
   onPageChange = () => null,

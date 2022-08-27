@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
-import tableStyles from "../styles/UnitsTable.module.css";
-import { convertToInternationalCurrencySystem } from "../utils/convertToInternationalCurrencySystem";
-import ImagesModal from "./ImagesModal";
+
+import tableStyles from "../../styles/UnitsTable.module.css";
+import { convertToInternationalCurrencySystem } from "../../utils/convertToInternationalCurrencySystem";
+import ImagesModal from "../shared/ImagesModal";
 
 const UnitRow = ({ unit }) => {
   const [imagesModal, setImagesModal] = useState(false);
 
-  const handleRowClick = useCallback(() => {
+  const handleImageClick = useCallback(() => {
     if (unit.photos.length) {
       setImagesModal(true);
     }
@@ -15,7 +16,7 @@ const UnitRow = ({ unit }) => {
 
   return (
     <>
-      <tr onClick={handleRowClick}>
+      <tr>
         <td>{unit.unit_id}</td>
 
         <td>{unit.unit_type}</td>
@@ -44,12 +45,14 @@ const UnitRow = ({ unit }) => {
               width={40}
               height={40}
               alt={unit.photos[0]}
+              onClick={handleImageClick}
             />
           ) : (
             <span> &#8212;</span>
           )}
         </td>
       </tr>
+
       <ImagesModal
         isOpen={imagesModal}
         onClose={() => setImagesModal(false)}

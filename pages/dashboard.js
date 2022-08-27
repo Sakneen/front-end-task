@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
-import Pagination from "../components/Pagination";
-
-import { Select, TextInput, UnitsTable } from "../components";
-import dashboardStyles from "../styles/Dashboard.module.css";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Select, TextInput, Pagination } from "../components/shared";
+import UnitsTable from "../components/unit-table";
+
+import dashboardStyles from "../styles/Dashboard.module.css";
 
 const pageSize = 5;
 const sortOptions = [
@@ -70,6 +71,8 @@ const Dashboard = ({ units = [] }) => {
     setCurrentPage(1);
     setSortValue(value);
   }, []);
+
+  //
 
   return (
     <div>

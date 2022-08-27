@@ -1,6 +1,6 @@
 import React from "react";
 
-import selectStyles from "../styles/Select.module.css";
+import selectStyles from "../../styles/shared-component-styles/Select.module.css";
 
 const Select = ({
   options = [{ value: "", label: "" }],
