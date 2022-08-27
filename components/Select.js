@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import selectStyles from "../styles/Select.module.css";
 

@@ -3,6 +3,8 @@ import Pagination from "../components/Pagination";
 
 import { Select, TextInput, UnitsTable } from "../components";
 import dashboardStyles from "../styles/Dashboard.module.css";
+import Image from "next/image";
+import Link from "next/link";
 
 const pageSize = 5;
 const sortOptions = [
@@ -73,6 +75,16 @@ const Dashboard = ({ units = [] }) => {
     <div>
       <h5 className={dashboardStyles.title}>Dashboard</h5>
 
+      <div className={dashboardStyles.breadcrumbs}>
+        <Image src="/home.svg" alt="home icon" width={16} height={16} />
+
+        <Link href="/">Home</Link>
+
+        <span>&gt;</span>
+
+        <span>Dashboard</span>
+      </div>
+
       <div className={dashboardStyles.toolbar}>
         <div>
           <span className={dashboardStyles.filterTitle}>Filters by ID:</span>
@@ -83,8 +95,17 @@ const Dashboard = ({ units = [] }) => {
           />
         </div>
 
-        <div>
+        <div className={dashboardStyles.sortContainer}>
+          <Image
+            src={"/sort.png"}
+            alt="Sort"
+            width={15}
+            height={15}
+            objectFit="contain"
+          />
+
           <span>Sort by: </span>
+
           <Select
             options={sortOptions}
             value={sortValue}

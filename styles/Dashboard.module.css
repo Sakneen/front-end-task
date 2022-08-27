@@ -2,6 +2,23 @@
   font-weight: 400;
   font-size: 24px;
   color: #000000;
+  margin: 0 0 8px 0;
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: #fff;
+  color: #a3a1a1;
+  font-size: 0.8rem;
+  padding: 9px;
+  margin-block-end: 20px;
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: #616161;
 }
 
 .toolbar {
@@ -13,6 +30,12 @@
 
 .toolbar div span {
   font-size: 11px;
+}
+.sortContainer {
+  display: flex;
+}
+.sortContainer span {
+  margin-left: 4px;
 }
 
 .filterTitle {
