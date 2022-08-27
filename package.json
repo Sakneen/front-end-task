@@ -11,7 +11,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@inovua/reactdatagrid-community": "^4.21.0",
+    "@mui/material": "^5.10.2",
     "@mui/x-data-grid": "^5.16.0",
     "axios": "^0.27.2",
     "concurrently": "7.3.0",

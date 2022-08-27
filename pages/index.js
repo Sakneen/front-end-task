@@ -77,7 +77,7 @@ export default function Home() {
       <Navbar />
       <Container
         maxWidth="lg"
-        style={{
+        style={{  
           marginTop: 50,
           justifyContent: "center",
           alignItems: "center",
