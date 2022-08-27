@@ -15,7 +15,7 @@ const Breadcrumb = () => {
     <Breadcrumbs
       aria-label="breadcrumb"
       separator={<NavigateNextIcon fontSize="small" />}
-      className="text-xs text-gray-400 my-5 font-[500]"
+      className="text-xs text-gray-400 my-5 font-[500] bg-white p-2 shadow rounded"
     >
       <Link href={'/'}>
         <a className={`flex items-center gap-x-2 capitalize ${acitveLink('')}`}>

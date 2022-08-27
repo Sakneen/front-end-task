@@ -12,7 +12,10 @@ export function FilterInput({}) {
   };
 
   return (
-    <label htmlFor="filterById" className="flex gap-x-4 items-baseline">
+    <label
+      htmlFor="filterById"
+      className="flex gap-x-4 items-baseline font-sans"
+    >
       <span className="font-bold text-sm">Filters by ID:</span>
       <input
         id="filterById"

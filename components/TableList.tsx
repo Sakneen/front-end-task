@@ -21,26 +21,26 @@ export default function TableList({ units = [] }: { units: IUnit[] }) {
     </span>
   );
   return (
-    <TableContainer className="shadow rounded-sm">
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+    <TableContainer className="shadow rounded">
+      <Table sx={{ minWidth: 650 }} aria-label="simple table" size="small">
+        <TableHead className="bg-white">
           <TableRow>
-            <TableCell align="left" className="font-medium font-sans">
+            <TableCell align="left" className="font-medium font-sans py-4">
               Unit ID
             </TableCell>
-            <TableCell align="left" className="font-medium font-sans">
+            <TableCell align="left" className="font-medium font-sans py-4">
               Unit Type
             </TableCell>
-            <TableCell align="left" className="font-medium font-sans">
+            <TableCell align="left" className="font-medium font-sans py-4">
               Price
             </TableCell>
-            <TableCell align="left" className="font-medium font-sans">
+            <TableCell align="left" className="font-medium font-sans py-4">
               Build up area
             </TableCell>
-            <TableCell align="left" className="font-medium font-sans">
+            <TableCell align="left" className="font-medium font-sans py-4">
               For sale
             </TableCell>
-            <TableCell align="left" className="font-medium font-sans">
+            <TableCell align="left" className="font-medium font-sans py-4">
               Gallary
             </TableCell>
           </TableRow>
