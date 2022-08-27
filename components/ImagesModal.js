@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import modalstyles from "../styles/ImagesModal.module.css";
