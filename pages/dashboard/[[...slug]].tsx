@@ -1,12 +1,10 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Dashboard from '../../components/Dashboard';
 import { useAppSelector } from '../../lib/hooks';
 import {
   getRunningOperationPromises,
   getUnitsList,
-  IParams,
   useGetUnitsListQuery,
 } from '../../lib/services/unitsApi';
 import { wrapper } from '../../lib/store';
@@ -23,6 +21,7 @@ const DashboardPage = () => {
     error,
   } = useGetUnitsListQuery(params, { skip: router.isFallback });
   console.log({ units });
+
   return (
     <>
       <Head>

@@ -1,4 +1,4 @@
-import { Action, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IParams } from '../services/unitsApi';
 
 export interface Opt {
@@ -17,6 +17,7 @@ const initialState: IParams = {
   _order: 'asc',
   _page: 1,
   _sort: 'unit_id',
+  unitId: null,
 };
 
 export const dashboardSlice = createSlice({
@@ -29,8 +30,12 @@ export const dashboardSlice = createSlice({
     orderBy: (state, _action: PayloadAction<void>) => {
       state._order = state._order === 'asc' ? 'desc' : 'asc';
     },
-    setPage: (state, action) => {},
+    filterById: (state, action: PayloadAction<IParams['unitId']>) => {
+      if (action.payload && action.payload?.length > 0) {
+        state.unitId = action.payload;
+      }
+    },
   },
 });
 
-export const { orderBy, sortBy, setPage } = dashboardSlice.actions;
+export const { orderBy, sortBy, filterById } = dashboardSlice.actions;

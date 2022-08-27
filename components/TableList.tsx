@@ -59,7 +59,8 @@ export default function TableList({ units = [] }: { units: IUnit[] }) {
                 align="left"
                 className="text-sm"
               >
-                {unit.unit_id.replaceAll('-', '')}
+                {/* {unit.unit_id.replaceAll('-', '')} */}
+                {unit.unit_id}
               </TableCell>
               <TableCell align="left" className="text-sm capitalize">
                 {unit.unit_type}
