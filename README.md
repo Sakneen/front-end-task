@@ -1,4 +1,4 @@
-## Notes By:[@mmoussel](https://github.com/mmoussel)
+## Notes By:[@mmoussel] (https://github.com/mmoussel)
 
 - First of all thanks for the great task.
 - I didn't use any third-party packages intentionally because I didn't know if I could use them in the task or not.
