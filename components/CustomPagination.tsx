@@ -1,21 +1,28 @@
 import { Pagination, PaginationItem } from '@mui/material';
-import { ChangeEvent, useMemo, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { selectPage } from '../lib/features/dashboardSlice';
 import { useAppDispatch, useAppSelector } from '../lib/hooks';
 import { useGetUnitsListQuery } from '../lib/services/unitsApi';
 
 export function CustomPagination() {
   const dispatch = useAppDispatch();
-  const { data: allUnits } = useGetUnitsListQuery(null);
-  const { _limit } = useAppSelector(({ dashboard }) => dashboard);
+  const params = useAppSelector(({ dashboard }) => dashboard);
+
+  const modifiedParams =
+    params.unit_id_like.length > 0
+      ? {
+          unit_id_like: params.unit_id_like,
+        }
+      : null;
+
+  const { data: allUnits } = useGetUnitsListQuery(modifiedParams);
+
   const [paginationSize, setPaginationSize] = useState<
     'small' | 'medium' | 'large'
   >('medium');
 
-  const pageCount = useMemo(
-    () => Math.ceil(allUnits?.length / _limit),
-    [_limit, allUnits?.length]
-  );
+  console.log({ allUnits });
+  const pageCount = Math.ceil(allUnits?.length / params._limit) || 0;
 
   const handleChange = (_event: ChangeEvent<unknown>, value: number) =>
     dispatch(selectPage(value));
@@ -38,7 +45,7 @@ export function CustomPagination() {
         onChange={handleChange}
         color="primary"
         size={paginationSize}
-        count={pageCount | 10}
+        count={pageCount}
         renderItem={(item) =>
           item.type === 'previous' || item.type === 'next' ? (
             <PaginationItem {...item} className="bg-transparent" />

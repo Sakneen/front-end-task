@@ -13,13 +13,20 @@ const DashboardPage = () => {
   const router = useRouter();
   const params = useAppSelector(({ dashboard }) => dashboard);
 
-  const {
-    data: units,
-    isLoading,
-    isFetching,
-    isError,
-    error,
-  } = useGetUnitsListQuery(params, { skip: router.isFallback });
+  const modifiedParams =
+    params.unit_id_like.length > 0
+      ? params
+      : {
+          _limit: params._limit,
+          _order: params._order,
+          _page: params._page,
+          _sort: params._sort,
+        };
+
+  console.log({ modifiedParams });
+  const { data: units } = useGetUnitsListQuery(modifiedParams, {
+    skip: router.isFallback,
+  });
   console.log({ units });
 
   return (

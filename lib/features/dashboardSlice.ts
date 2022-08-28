@@ -17,7 +17,7 @@ const initialState: IParams = {
   _order: 'asc',
   _page: 1,
   _sort: 'unit_id',
-  unitId: null,
+  unit_id_like: '',
 };
 
 export const dashboardSlice = createSlice({
@@ -30,10 +30,8 @@ export const dashboardSlice = createSlice({
     orderBy: (state, _action: PayloadAction<void>) => {
       state._order = state._order === 'asc' ? 'desc' : 'asc';
     },
-    filterById: (state, action: PayloadAction<IParams['unitId']>) => {
-      if (action.payload && action.payload?.length > 0) {
-        state.unitId = action.payload;
-      }
+    filterById: (state, action: PayloadAction<IParams['unit_id_like']>) => {
+      state.unit_id_like = action.payload;
     },
     selectPage: (state, action: PayloadAction<IParams['_page']>) => {
       state._page = action.payload;

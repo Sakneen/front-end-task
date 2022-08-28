@@ -7,7 +7,7 @@ export interface IParams {
   _limit?: number;
   _sort?: 'unit_id' | 'unit_type' | 'total_price' | string;
   _order?: 'asc' | 'desc';
-  unitId?: string;
+  unit_id_like?: string;
 }
 
 export const unitsApi = createApi({
