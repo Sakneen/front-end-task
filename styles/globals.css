@@ -44,10 +44,10 @@
 
 @media (min-width: 1024px) {
   .swiper-button-prev {
-    left: 10% !important;
+    left: 5% !important;
   }
   .swiper-button-next {
-    right: 10% !important;
+    right: 5% !important;
   }
 }
 @media (min-width: 1280px) {
@@ -60,9 +60,9 @@
 }
 @media (min-width: 1536px) {
   .swiper-button-prev {
-    left: 10% !important;
+    left: 3% !important;
   }
   .swiper-button-next {
-    right: 10% !important;
+    right: 3% !important;
   }
 }

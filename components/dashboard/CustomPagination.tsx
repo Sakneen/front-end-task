@@ -21,7 +21,6 @@ export function CustomPagination() {
     'small' | 'medium' | 'large'
   >('medium');
 
-  console.log({ allUnits });
   const pageCount = Math.ceil(allUnits?.length / params._limit) || 0;
 
   const handleChange = (_event: ChangeEvent<unknown>, value: number) =>

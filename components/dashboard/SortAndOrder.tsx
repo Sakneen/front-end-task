@@ -24,14 +24,14 @@ const SortAndOrder = () => {
     <>
       <section className="flex items-center">
         <div
-          className={`text-sm cursor-pointer   rounded-full w-6 h-6 mr-2 flex justify-center items-center active:animate-bounce ${
+          className={`text-sm cursor-pointer rounded-full w-6 h-6 mr-2 flex justify-center items-center active:animate-bounce ${
             _order !== 'asc' ? 'bg-slate-200' : 'bg-slate-50'
           }`}
           onClick={handleOrder}
         >
           <FilterListIcon
             fontSize="small"
-            className={`text-[#9E9E9E] cursor-pointer  hover:text-gray-700 ${
+            className={`text-[#9E9E9E] cursor-pointer  hover:text-gray-700 transition active:scale-95 ${
               _order !== 'asc' ? 'text-gray-900' : ''
             }`}
           />

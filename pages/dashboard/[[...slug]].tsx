@@ -24,11 +24,9 @@ const DashboardPage = () => {
           _sort: params._sort,
         };
 
-  console.log({ modifiedParams });
   const { data: units } = useGetUnitsListQuery(modifiedParams, {
     skip: router.isFallback,
   });
-  console.log({ units });
 
   return (
     <>
@@ -36,6 +34,7 @@ const DashboardPage = () => {
         <title>Sakneen | Dashboard</title>
       </Head>
       <Dashboard units={units} />
+
       <GallaryModal />
     </>
   );
@@ -46,7 +45,6 @@ export default DashboardPage;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ query }) => {
-      console.log({ servQuery: query });
       store.dispatch(getUnitsList.initiate(query));
       await Promise.all(getRunningOperationPromises());
       return {

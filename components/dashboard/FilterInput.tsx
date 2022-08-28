@@ -5,8 +5,8 @@ import {
   useState,
   useTransition,
 } from 'react';
-import { filterById, sortBy } from '../../lib/features/dashboardSlice';
-import { useAppDispatch, useAppSelector } from '../../lib/hooks';
+import { filterById } from '../../lib/features/dashboardSlice';
+import { useAppDispatch } from '../../lib/hooks';
 
 export function FilterInput({}) {
   const dispatch = useAppDispatch();

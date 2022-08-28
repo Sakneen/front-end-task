@@ -10,10 +10,6 @@ const Layout = ({ children }) => {
   const title =
     asPath.substring(1, queryParamIndex === -1 ? undefined : queryParamIndex) ||
     'Home';
-  console.log(
-    'title',
-    asPath.substring(1, queryParamIndex === -1 ? undefined : queryParamIndex)
-  );
 
   return (
     <>
