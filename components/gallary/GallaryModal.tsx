@@ -1,11 +1,11 @@
 import Modal from '@mui/material/Modal';
 import { closeGallary } from '../../lib/features/gallarySlice';
 import { useAppDispatch, useAppSelector } from '../../lib/hooks';
+import GallarySwiper from './GallarySwiper';
 
 const GallaryModal = () => {
   const dispatch = useAppDispatch();
-  const params = useAppSelector(({ dashboard }) => dashboard);
-  const { images, isOpen } = useAppSelector(({ gallary }) => gallary);
+  const { isOpen } = useAppSelector(({ gallary }) => gallary);
 
   return (
     <Modal
@@ -13,8 +13,14 @@ const GallaryModal = () => {
       onClose={() => dispatch(closeGallary())}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
-      <div>Hello</div>
+      <section className="outline-none rounded relative">
+        <GallarySwiper />
+      </section>
     </Modal>
   );
 };
