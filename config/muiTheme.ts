@@ -21,7 +21,7 @@ const muiTheme = createTheme({
     },
     MuiPaginationItem: {
       styleOverrides: {
-        ellipsis: { minWidth: '30px', minHeight: '30px' },
+        ellipsis: { minWidth: '29px', minHeight: '29px' },
         firstLast: { backgroundColor: 'transparent' },
       },
     },

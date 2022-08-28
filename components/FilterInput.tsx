@@ -21,7 +21,7 @@ export function FilterInput({}) {
         id="filterById"
         type="text"
         placeholder="ex: 45785"
-        className="placeholder:text-xs placeholder:font-light placeholder:text-gray-300 rounded-sm border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm shadow-sm px-2 py-2"
+        className="placeholder:text-xs placeholder:font-light placeholder:text-gray-300 rounded border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm shadow-sm px-2 py-2"
         onChange={filterChangeHandler}
       />
     </label>

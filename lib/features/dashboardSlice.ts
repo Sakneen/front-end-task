@@ -35,7 +35,11 @@ export const dashboardSlice = createSlice({
         state.unitId = action.payload;
       }
     },
+    selectPage: (state, action: PayloadAction<IParams['_page']>) => {
+      state._page = action.payload;
+    },
   },
 });
 
-export const { orderBy, sortBy, filterById } = dashboardSlice.actions;
+export const { orderBy, sortBy, filterById, selectPage } =
+  dashboardSlice.actions;
