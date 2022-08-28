@@ -1,8 +1,8 @@
 import { Pagination, PaginationItem } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { selectPage } from '../lib/features/dashboardSlice';
-import { useAppDispatch, useAppSelector } from '../lib/hooks';
-import { useGetUnitsListQuery } from '../lib/services/unitsApi';
+import { selectPage } from '../../lib/features/dashboardSlice';
+import { useAppDispatch, useAppSelector } from '../../lib/hooks';
+import { useGetUnitsListQuery } from '../../lib/services/unitsApi';
 
 export function CustomPagination() {
   const dispatch = useAppDispatch();

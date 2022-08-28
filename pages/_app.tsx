@@ -1,5 +1,5 @@
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
-import Layout from '../components/Layout';
+import Layout from '../components/layouts/Layout';
 import muiTheme from '../config/muiTheme';
 import { wrapper } from '../lib/store';
 import '../styles/globals.css';

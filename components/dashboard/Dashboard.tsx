@@ -1,4 +1,4 @@
-import { IUnit } from '../interfaces/IUnit';
+import { IUnit } from '../../interfaces/IUnit';
 import { CustomPagination } from './CustomPagination';
 import { FilterInput } from './FilterInput';
 import SortAndOrder from './SortAndOrder';

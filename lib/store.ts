@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { dashboardSlice } from './features/dashboardSlice';
+import { gallarySlice } from './features/gallarySlice';
 import { unitsApi } from './services/unitsApi';
 
 export const makeStore = () =>
@@ -8,6 +9,7 @@ export const makeStore = () =>
     reducer: {
       [unitsApi.reducerPath]: unitsApi.reducer,
       [dashboardSlice.name]: dashboardSlice.reducer,
+      [gallarySlice.name]: gallarySlice.reducer,
     },
     middleware: (gDM) => gDM().concat(unitsApi.middleware),
   });

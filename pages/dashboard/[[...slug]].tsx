@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Dashboard from '../../components/Dashboard';
+import Dashboard from '../../components/dashboard/Dashboard';
+import GallaryModal from '../../components/gallary/GallaryModal';
 import { useAppSelector } from '../../lib/hooks';
 import {
   getRunningOperationPromises,
@@ -35,6 +36,7 @@ const DashboardPage = () => {
         <title>Sakneen | Dashboard</title>
       </Head>
       <Dashboard units={units} />
+      <GallaryModal />
     </>
   );
 };

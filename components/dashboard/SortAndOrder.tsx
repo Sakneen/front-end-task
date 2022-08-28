@@ -6,8 +6,8 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { options, orderBy, sortBy } from '../lib/features/dashboardSlice';
-import { useAppDispatch, useAppSelector } from '../lib/hooks';
+import { options, orderBy, sortBy } from '../../lib/features/dashboardSlice';
+import { useAppDispatch, useAppSelector } from '../../lib/hooks';
 
 const SortAndOrder = () => {
   const dispath = useAppDispatch();

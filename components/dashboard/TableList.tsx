@@ -6,10 +6,18 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Image from 'next/image';
 import { useState } from 'react';
-import { IUnit } from '../interfaces/IUnit';
+import { IUnit } from '../../interfaces/IUnit';
+import { openGallary } from '../../lib/features/gallarySlice';
+import { useAppDispatch } from '../../lib/hooks';
 
 export default function TableList({ units = [] }: { units: IUnit[] }) {
   const [imageError, setImageError] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const gallaryHandler = (images: string[]) => {
+    dispatch(openGallary(images));
+  };
+
   const forSale = (
     <span className="bg-blue-800 text-white font-sans text-[9px] font-bold uppercase px-2 py-1 rounded">
       for sale
@@ -50,7 +58,7 @@ export default function TableList({ units = [] }: { units: IUnit[] }) {
             <TableRow
               key={unit.unit_id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              className="even:bg-white odd:bg-[#F5F5F5] border-0 hover:bg-[#F5F5F5] 
+              className="even:bg-white odd:bg-[#F5F5F5] border-0 hover:bg-[#F5F5F5]
               "
             >
               <TableCell
@@ -88,6 +96,8 @@ export default function TableList({ units = [] }: { units: IUnit[] }) {
                   priority
                   alt={unit.unit_type}
                   onError={() => setImageError(true)}
+                  className="cursor-pointer"
+                  onClick={() => gallaryHandler(unit.photos)}
                 />
               </TableCell>
             </TableRow>

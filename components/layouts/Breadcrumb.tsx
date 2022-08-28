@@ -2,7 +2,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Breadcrumbs } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import HomeIcon from './icons/HomeIcon';
+import HomeIcon from '../icons/HomeIcon';
 
 const Breadcrumb = () => {
   const router = useRouter();
