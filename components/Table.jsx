@@ -1,28 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChevronRightIcon,
   ChevronLeftIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
+import axios from "axios";
+import Pagination from "./Pagination";
 
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.malton@example.com",
-    role: "Member",
-  },
-  // More people...
-];
-
-const Table = () => {
+const Table = ({ sort, searchInput }) => {
   const [showImagesModal, setShowImagesModal] = useState(false);
+  const [modalImages, setModalImages] = useState([]);
+  const [modalIndex, setModalIndex] = useState(0);
+  const [listings, setListings] = useState([]);
+  const [filteredListings, setFilteredListings] = useState([]);
+  const [paginationIndex, setPaginationIndex] = useState(1);
+  const [totalListings, setTotalListings] = useState(0);
+
+  useEffect(() => {
+    if (searchInput === "") {
+      axios
+        .get(
+          `http://localhost:3005/listings?_limit=10&_page=${paginationIndex}&_sort=${sort}`
+        )
+        .then((res) => {
+          setTotalListings(res.headers["x-total-count"]);
+          setListings(() => res.data);
+        });
+    } else {
+      axios
+        .get(
+          `http://localhost:3005/listings?_limit=10&_page=${paginationIndex}&_sort=${sort}&unit_id_like=${searchInput}`
+        )
+        .then((res) => {
+          setTotalListings(res.headers["x-total-count"]);
+          setListings(() => res.data);
+        });
+    }
+
+    return () => {};
+  }, [paginationIndex, sort, searchInput]);
+
+  console.log(filteredListings);
+
   return (
     <div className="mt-8 flex flex-col">
       <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -70,33 +89,36 @@ const Table = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
-                {people.map((person, idx) => (
+                {listings.map((listing, idx) => (
                   <tr
-                    key={person.email}
+                    key={listing._id}
                     className={idx % 2 === 0 ? "bg-[#F5F5F5]" : ""}
                   >
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                      {person.name}
+                      {listing.unit_id}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {person.title}
+                      {listing.unit_type}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {person.email}
+                      {(Math.abs(listing.total_price) / 1.0e6).toFixed(1)}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {person.role}
+                      {listing.bua}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {person.role}
+                      {listing.for_sale ? "FOR SALE" : "NOT FOR SALE"}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <img
-                        src={
-                          "https://img.freepik.com/premium-photo/cabinet-shelves-wall-design-room-with-decoration-lamp-plants-carpet-sofa-3d-rendering_43151-7292.jpg?w=2000"
-                        }
+                        src={listing.photos[0] ?? "/placeholder.png"}
                         className="h-10 w-10 cursor-pointer"
-                        onClick={() => setShowImagesModal(true)}
+                        onClick={() => {
+                          if (listing.photos[0]) {
+                            setShowImagesModal(true);
+                            setModalImages(() => listing.photos);
+                          }
+                        }}
                       />
                     </td>
                   </tr>
@@ -106,22 +128,39 @@ const Table = () => {
           </div>
         </div>
       </div>
+      <Pagination
+        totalListings={totalListings}
+        paginationIndex={paginationIndex}
+        setPaginationIndex={setPaginationIndex}
+      />
       {showImagesModal && (
         <div className="fixed flex justify-center items-center inset-0 bg-black bg-opacity-40">
-          <ChevronLeftIcon className="w-10 text-white" />
+          <ChevronLeftIcon
+            className="w-10 text-white"
+            onClick={() => modalIndex > 0 && setModalIndex(modalIndex - 1)}
+          />
           <div
             className="h-96 w-[80%] max-w-[600px] bg-white bg-cover bg-center m-10 relative"
             style={{
-              backgroundImage:
-                "url(https://img.freepik.com/premium-photo/cabinet-shelves-wall-design-room-with-decoration-lamp-plants-carpet-sofa-3d-rendering_43151-7292.jpg?w=2000)",
+              backgroundImage: `url(${modalImages[modalIndex]})`,
             }}
           >
             <XMarkIcon
               className="absolute top-5 right-5 h-7 w-7 p-1.5 bg-white text-[#0E1024] rounded-full cursor-pointer"
-              onClick={() => setShowImagesModal(false)}
+              onClick={() => {
+                setModalImages([]);
+                setModalIndex(0);
+                setShowImagesModal(false);
+              }}
             />
           </div>
-          <ChevronRightIcon className="w-10 text-white" />
+          <ChevronRightIcon
+            className="w-10 text-white"
+            onClick={() =>
+              modalIndex < modalImages.length - 1 &&
+              setModalIndex(modalIndex + 1)
+            }
+          />
         </div>
       )}
     </div>

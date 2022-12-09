@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilterSort = () => {
+const FilterSort = ({ setSort, searchInput, setSearchInput }) => {
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between mt-8">
       <div className="flex items-center">
@@ -8,6 +8,8 @@ const FilterSort = () => {
         <input
           type="text"
           name="unitId"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
           placeholder="ex: 45785"
           className="p-1 shadow-sm"
         />
@@ -19,10 +21,11 @@ const FilterSort = () => {
             className=" w-auto py-1.5 text-base font-normal text-gray-700 bg-transparent border-none
              focus:outline-none"
             aria-label="Default select example"
+            onChange={(e) => setSort(e.target.value)}
           >
-            <option value="1">Unit ID</option>
-            <option value="2">Unit Type</option>
-            <option value="3">Unit Price</option>
+            <option value="unit_id">Unit ID</option>
+            <option value="unit_type">Unit Type</option>
+            <option value="total_price">Unit Price</option>
           </select>
         </div>
       </div>
