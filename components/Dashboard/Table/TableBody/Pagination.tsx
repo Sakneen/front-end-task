@@ -4,7 +4,6 @@ import { PaginationContext } from "../../../../context";
 
 export default function Pagination() {
   const {
-    totalListings,
     paginationIndex,
     setPaginationIndex,
     maxPages,
@@ -25,9 +24,11 @@ export default function Pagination() {
         >
           Previous
         </a>
-        <span className="bg-[#2419BE] text-white px-3 py-2 rounded">
-          {paginationIndex} of {maxPages}
-        </span>
+        {maxPages > 1 && (
+          <span className="bg-[#2419BE] text-white px-3 py-2 rounded">
+            {paginationIndex} of {maxPages}
+          </span>
+        )}
         <a
           href="#"
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300  px-4 py-2 text-sm font-medium bg-[#E5E5E5] text-black"
@@ -67,7 +68,7 @@ export default function Pagination() {
               </>
             )}
 
-            {Array.from({ length: totalListings }).map((_, idx) => {
+            {Array.from({ length: maxPages }).map((_, idx) => {
               if (
                 idx < maxPageNumber &&
                 idx + 1 >= minPageNumber &&
@@ -83,6 +84,7 @@ export default function Pagination() {
                         : "bg-[#E5E5E5]"
                     } rounded-full mx-2 px-4 py-2 text-sm font-medium focus:z-20`}
                     onClick={() => setPaginationIndex(idx + 1)}
+                    key={idx}
                   >
                     {idx + 1}
                   </a>

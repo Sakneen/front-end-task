@@ -10,12 +10,13 @@ import {
 
 import { Listing } from "../../../../types/Listing";
 import { getFetch } from "../../../../utils/getFetch";
+import { getLastPageIndex } from "../../../../utils/getLastPageIndex";
 
 const TableBody = () => {
   const [listings, setListings] = useState<Listing[]>([]);
   const { searchInput } = useContext(SearchContext)!;
   const { sort } = useContext(SortContext)!;
-  const { paginationIndex, setMaxPages, setTotalListings } =
+  const { paginationIndex, setMaxPages, itemsPerPage } =
     useContext(PaginationContext)!;
 
   useEffect(() => {
@@ -23,23 +24,19 @@ const TableBody = () => {
       getFetch("http://localhost:3005/listings", {
         _page: paginationIndex,
         _sort: sort,
-        _limit: 7,
+        _limit: itemsPerPage,
       }).then((res) => {
-        const lastPageIndex = res.headers.link!.split("_page");
-        setMaxPages(+lastPageIndex[lastPageIndex.length - 1][1]);
-        setTotalListings(+res.headers["x-total-count"]!);
+        setMaxPages(getLastPageIndex(res.headers.link!));
         setListings(() => res.data);
       });
     } else {
       getFetch("http://localhost:3005/listings", {
         _page: paginationIndex,
         _sort: sort,
-        _limit: 7,
+        _limit: itemsPerPage,
         unit_id_like: searchInput,
       }).then((res) => {
-        const lastPageIndex = res.headers.link!.split("_page");
-        setMaxPages(+lastPageIndex[lastPageIndex.length - 1][1]);
-        setTotalListings(+res.headers["x-total-count"]!);
+        setMaxPages(getLastPageIndex(res.headers.link!));
         setListings(() => res.data);
       });
     }

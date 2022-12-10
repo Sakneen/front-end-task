@@ -22,8 +22,6 @@ export interface paginationContext {
   setPaginationIndex: React.Dispatch<React.SetStateAction<number>>;
   maxPages: number;
   setMaxPages: React.Dispatch<React.SetStateAction<number>>;
-  totalListings: number;
-  setTotalListings: React.Dispatch<React.SetStateAction<number>>;
   maxPageNumber: number;
   minPageNumber: number;
   setMinPageNumber: React.Dispatch<React.SetStateAction<number>>;

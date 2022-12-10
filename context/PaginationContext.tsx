@@ -7,10 +7,9 @@ export const PaginationContext = createContext<paginationContext | null>(null);
 export const PaginationContextProvider = ({ children }) => {
   const [paginationIndex, setPaginationIndex] = useState(1);
   const [maxPages, setMaxPages] = useState(0);
-  const [totalListings, setTotalListings] = useState(0);
   const [maxPageNumber, setMaxPageNumber] = useState(5);
   const [minPageNumber, setMinPageNumber] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const handleNextClick = () => {
     if (paginationIndex < maxPages) {
@@ -37,8 +36,6 @@ export const PaginationContextProvider = ({ children }) => {
     setPaginationIndex,
     maxPages,
     setMaxPages,
-    totalListings,
-    setTotalListings,
     maxPageNumber,
     minPageNumber,
     setMinPageNumber,
