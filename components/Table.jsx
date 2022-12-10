@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   ChevronRightIcon,
   ChevronLeftIcon,
@@ -6,23 +6,36 @@ import {
 } from "@heroicons/react/20/solid";
 import axios from "axios";
 import Pagination from "./Pagination";
+import { PaginationContext } from "../context/PaginationContext";
+import { SearchContext } from "../context/SearchContext";
+import { SortContext } from "../context/SortContext";
 
-const Table = ({ sort, searchInput }) => {
+const Table = () => {
+  const { searchInput } = useContext(SearchContext);
+  const { sort } = useContext(SortContext);
+
+  const {
+    paginationIndex,
+    setPaginationIndex,
+    maxItems,
+    setMaxItems,
+    setTotalListings,
+  } = useContext(PaginationContext);
+
   const [showImagesModal, setShowImagesModal] = useState(false);
   const [modalImages, setModalImages] = useState([]);
   const [modalIndex, setModalIndex] = useState(0);
   const [listings, setListings] = useState([]);
-  const [filteredListings, setFilteredListings] = useState([]);
-  const [paginationIndex, setPaginationIndex] = useState(1);
-  const [totalListings, setTotalListings] = useState(0);
 
   useEffect(() => {
     if (searchInput === "") {
       axios
         .get(
-          `http://localhost:3005/listings?_limit=10&_page=${paginationIndex}&_sort=${sort}`
+          `http://localhost:3005/listings?_limit=7&_page=${paginationIndex}&_sort=${sort}`
         )
         .then((res) => {
+          const lastPageIndex = res.headers.link.split("_page");
+          setMaxItems(lastPageIndex[lastPageIndex.length - 1][1]);
           setTotalListings(res.headers["x-total-count"]);
           setListings(() => res.data);
         });
@@ -32,6 +45,8 @@ const Table = ({ sort, searchInput }) => {
           `http://localhost:3005/listings?_limit=10&_page=${paginationIndex}&_sort=${sort}&unit_id_like=${searchInput}`
         )
         .then((res) => {
+          const lastPageIndex = res.headers.link.split("_page");
+          setMaxItems(lastPageIndex[lastPageIndex.length - 1][1]);
           setTotalListings(res.headers["x-total-count"]);
           setListings(() => res.data);
         });
@@ -40,7 +55,9 @@ const Table = ({ sort, searchInput }) => {
     return () => {};
   }, [paginationIndex, sort, searchInput]);
 
-  console.log(filteredListings);
+  useEffect(() => {
+    paginationIndex > 1 && setPaginationIndex(1);
+  }, [sort, searchInput]);
 
   return (
     <div className="mt-8 flex flex-col">
@@ -106,8 +123,16 @@ const Table = ({ sort, searchInput }) => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {listing.bua}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {listing.for_sale ? "FOR SALE" : "NOT FOR SALE"}
+                    <td
+                      className={`whitespace-nowrap px-3 py-4 text-sm text-white`}
+                    >
+                      <div
+                        className={`${
+                          listing.for_sale ? "bg-[#2419BE]" : "bg-[#616161]"
+                        } w-fit px-2 py-1.5 rounded-md`}
+                      >
+                        {listing.for_sale ? "FOR SALE" : "NOT FOR SALE"}
+                      </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <img
@@ -128,11 +153,7 @@ const Table = ({ sort, searchInput }) => {
           </div>
         </div>
       </div>
-      <Pagination
-        totalListings={totalListings}
-        paginationIndex={paginationIndex}
-        setPaginationIndex={setPaginationIndex}
-      />
+      <Pagination maxItems={maxItems} />
       {showImagesModal && (
         <div className="fixed flex justify-center items-center inset-0 bg-black bg-opacity-40">
           <ChevronLeftIcon
@@ -140,13 +161,18 @@ const Table = ({ sort, searchInput }) => {
             onClick={() => modalIndex > 0 && setModalIndex(modalIndex - 1)}
           />
           <div
-            className="h-96 w-[80%] max-w-[600px] bg-white bg-cover bg-center m-10 relative"
+            className="h-96 w-[80%] max-w-[600px] bg-cover bg-center m-10 relative flex items-center"
             style={{
               backgroundImage: `url(${modalImages[modalIndex]})`,
             }}
           >
+            <div className="absolute h-full w-full top-0 backdrop-blur-sm" />
+            <img
+              src={`${modalImages[modalIndex]}`}
+              className="z-10 border-none"
+            />
             <XMarkIcon
-              className="absolute top-5 right-5 h-7 w-7 p-1.5 bg-white text-[#0E1024] rounded-full cursor-pointer"
+              className="absolute top-5 right-5 h-7 w-7 p-1.5 bg-white text-[#0E1024] rounded-full cursor-pointer z-10"
               onClick={() => {
                 setModalImages([]);
                 setModalIndex(0);

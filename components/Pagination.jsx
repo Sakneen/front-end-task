@@ -1,39 +1,18 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { PaginationContext } from "../context/PaginationContext";
 
-export default function Pagination({
-  totalListings,
-  paginationIndex,
-  setPaginationIndex,
-}) {
-  const [maxItems, setMaxItems] = useState(0);
-  const [maxPageNumber, setMaxPageNumber] = useState(5);
-  const [minPageNumber, setMinPageNumber] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-
-  useEffect(() => {
-    setMaxItems(Math.round(totalListings / 10));
-  }, [totalListings]);
-
-  const handleNextClick = () => {
-    if (paginationIndex < maxItems) {
-      setPaginationIndex((paginationIndex) => paginationIndex + 1);
-      if (paginationIndex === maxPageNumber) {
-        setMaxPageNumber((maxPageNumber) => maxPageNumber + itemsPerPage);
-        setMinPageNumber((minPageNumber) => minPageNumber + itemsPerPage);
-      }
-    }
-  };
-
-  const handlePrevClick = () => {
-    if (paginationIndex > 1) {
-      setPaginationIndex((paginationIndex) => paginationIndex - 1);
-      if (paginationIndex === minPageNumber) {
-        setMaxPageNumber((maxPageNumber) => maxPageNumber - itemsPerPage);
-        setMinPageNumber((minPageNumber) => minPageNumber - itemsPerPage);
-      }
-    }
-  };
+export default function Pagination() {
+  const {
+    totalListings,
+    paginationIndex,
+    setPaginationIndex,
+    maxItems,
+    maxPageNumber,
+    minPageNumber,
+    handleNextClick,
+    handlePrevClick,
+  } = useContext(PaginationContext);
 
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-transparent px-4 py-3 sm:px-6">
@@ -97,6 +76,7 @@ export default function Pagination({
                         ? "bg-[#2419BE] text-white"
                         : "bg-[#E5E5E5]"
                     } rounded-full mx-2 px-4 py-2 text-sm font-medium focus:z-20`}
+                    onClick={() => setPaginationIndex(idx + 1)}
                   >
                     {idx + 1}
                   </a>
