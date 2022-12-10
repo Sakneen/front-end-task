@@ -1,7 +1,7 @@
 import React from "react";
-import BreadCrumbs from "./BreadCrumbs";
-import FilterSort from "./FilterSort";
-import Table from "./Table";
+import BreadCrumbs from "../BreadCrumbs";
+import FilterSort from "./FilterSort/FilterSort";
+import Table from "./Table/Table";
 
 export default function Dashboard() {
   return (

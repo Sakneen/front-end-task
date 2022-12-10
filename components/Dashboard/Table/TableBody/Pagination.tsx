@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import { useContext } from "react";
-import { PaginationContext } from "../context/PaginationContext";
+import { PaginationContext } from "../../../../context";
 
 export default function Pagination() {
   const {
     totalListings,
     paginationIndex,
     setPaginationIndex,
-    maxItems,
+    maxPages,
     maxPageNumber,
     minPageNumber,
     handleNextClick,
@@ -18,16 +17,21 @@ export default function Pagination() {
 
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-transparent px-4 py-3 sm:px-6">
-      <div className="flex flex-1 justify-between sm:hidden">
+      <div className="flex flex-1 justify-between items-center sm:hidden">
         <a
           href="#"
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="relative inline-flex items-center rounded-md border border-gray-300 bg-[#E5E5E5] text-black px-4 py-2 text-sm font-medium "
+          onClick={handlePrevClick}
         >
           Previous
         </a>
+        <span className="bg-[#2419BE] text-white px-3 py-2 rounded">
+          {paginationIndex} of {maxPages}
+        </span>
         <a
           href="#"
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300  px-4 py-2 text-sm font-medium bg-[#E5E5E5] text-black"
+          onClick={handleNextClick}
         >
           Next
         </a>
@@ -63,11 +67,11 @@ export default function Pagination() {
               </>
             )}
 
-            {Array.from({ length: totalListings }).map((page, idx) => {
+            {Array.from({ length: totalListings }).map((_, idx) => {
               if (
                 idx < maxPageNumber &&
                 idx + 1 >= minPageNumber &&
-                idx + 1 <= maxItems
+                idx + 1 <= maxPages
               ) {
                 return (
                   <a
@@ -85,7 +89,7 @@ export default function Pagination() {
                 );
               }
             })}
-            {maxPageNumber < maxItems && (
+            {maxPageNumber < maxPages && (
               <>
                 <span className="relative inline-flex items-center bg-[#E5E5E5] rounded-full text-[#9E9E9E] mx-2 px-4 py-2 text-sm font-medium">
                   ...
@@ -95,7 +99,7 @@ export default function Pagination() {
                   aria-current="page"
                   className="relative z-10 inline-flex items-center bg-[#E5E5E5] rounded-full text-[#9E9E9E] mx-2 px-4 py-2 text-sm font-medium focus:z-20"
                 >
-                  {maxItems}
+                  {maxPages}
                 </a>
               </>
             )}

@@ -20,8 +20,8 @@ export interface imagesModalContext {
 export interface paginationContext {
   paginationIndex: number;
   setPaginationIndex: React.Dispatch<React.SetStateAction<number>>;
-  maxItems: number;
-  setMaxItems: React.Dispatch<React.SetStateAction<number>>;
+  maxPages: number;
+  setMaxPages: React.Dispatch<React.SetStateAction<number>>;
   totalListings: number;
   setTotalListings: React.Dispatch<React.SetStateAction<number>>;
   maxPageNumber: number;

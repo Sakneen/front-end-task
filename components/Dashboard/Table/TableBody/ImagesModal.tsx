@@ -1,11 +1,10 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import {
   ChevronRightIcon,
   ChevronLeftIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import { ImagesModalContext } from "../context/ImagesModalContext";
+import { ImagesModalContext } from "../../../../context/ImagesModalContext";
 
 const ImagesModal = () => {
   const {
