@@ -1,4 +1,5 @@
-import { React, useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import {
   ChevronRightIcon,
   ChevronLeftIcon,
@@ -13,7 +14,7 @@ const ImagesModal = () => {
     setModalImages,
     modalIndex,
     setModalIndex,
-  } = useContext(ImagesModalContext);
+  } = useContext(ImagesModalContext)!;
 
   return (
     <div className="fixed flex justify-center items-center inset-0 bg-black bg-opacity-40">

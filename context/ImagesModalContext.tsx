@@ -1,10 +1,14 @@
+import React from "react";
 import { createContext, useState } from "react";
+import { imagesModalContext } from "../types/Contexts";
 
-export const ImagesModalContext = createContext(null);
+export const ImagesModalContext = createContext<imagesModalContext | null>(
+  null
+);
 
 export const ImagesModalContextProvider = ({ children }) => {
   const [showImagesModal, setShowImagesModal] = useState(false);
-  const [modalImages, setModalImages] = useState([]);
+  const [modalImages, setModalImages] = useState<string[]>([]);
   const [modalIndex, setModalIndex] = useState(0);
 
   const value = {

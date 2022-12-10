@@ -1,6 +1,8 @@
+import React from "react";
 import { createContext, useState } from "react";
+import { paginationContext } from "../types/Contexts";
 
-export const PaginationContext = createContext(null);
+export const PaginationContext = createContext<paginationContext | null>(null);
 
 export const PaginationContextProvider = ({ children }) => {
   const [paginationIndex, setPaginationIndex] = useState(1);
@@ -30,7 +32,7 @@ export const PaginationContextProvider = ({ children }) => {
     }
   };
 
-  const value = {
+  const value: paginationContext = {
     paginationIndex,
     setPaginationIndex,
     maxItems,
@@ -39,6 +41,9 @@ export const PaginationContextProvider = ({ children }) => {
     setTotalListings,
     maxPageNumber,
     minPageNumber,
+    setMinPageNumber,
+    setMaxPageNumber,
+    itemsPerPage,
     setItemsPerPage,
     handleNextClick,
     handlePrevClick,

@@ -1,11 +1,13 @@
+import React from "react";
 import { createContext, useState } from "react";
+import { searchInputContext } from "../types/Contexts";
 
-export const SearchContext = createContext(null);
+export const SearchContext = createContext<searchInputContext | null>(null);
 
 export const SearchContextProvider = ({ children }) => {
   const [searchInput, setSearchInput] = useState("");
 
-  const value = {
+  const value: searchInputContext = {
     searchInput,
     setSearchInput,
   };

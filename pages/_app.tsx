@@ -1,3 +1,4 @@
+import React from "react";
 import { ImagesModalContextProvider } from "../context/ImagesModalContext";
 import { PaginationContextProvider } from "../context/PaginationContext";
 import { SearchContextProvider } from "../context/SearchContext";

@@ -1,3 +1,4 @@
+import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { useContext } from "react";
 import { PaginationContext } from "../context/PaginationContext";
@@ -12,7 +13,8 @@ export default function Pagination() {
     minPageNumber,
     handleNextClick,
     handlePrevClick,
-  } = useContext(PaginationContext);
+    itemsPerPage,
+  } = useContext(PaginationContext)!;
 
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-transparent px-4 py-3 sm:px-6">
@@ -46,7 +48,7 @@ export default function Pagination() {
             </a>
             {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
 
-            {minPageNumber > 5 && (
+            {minPageNumber > itemsPerPage && (
               <>
                 <a
                   href="#"

@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import axios from "axios";
 import Pagination from "./Pagination";
+import ImagesModal from "./ImagesModal";
+
 import { PaginationContext } from "../context/PaginationContext";
 import { SearchContext } from "../context/SearchContext";
 import { SortContext } from "../context/SortContext";
-import ImagesModal from "./ImagesModal";
 import { ImagesModalContext } from "../context/ImagesModalContext";
 
+import { getFetch } from "../utils/getFetch";
+import { Listing } from "../types/Listing";
+
 const Table = () => {
-  const { searchInput } = useContext(SearchContext);
-  const { sort } = useContext(SortContext);
+  const { searchInput } = useContext(SearchContext)!;
+  const { sort } = useContext(SortContext)!;
   const { showImagesModal, setShowImagesModal, setModalImages } =
-    useContext(ImagesModalContext);
+    useContext(ImagesModalContext)!;
 
   const {
     paginationIndex,
@@ -20,40 +23,47 @@ const Table = () => {
     maxItems,
     setMaxItems,
     setTotalListings,
-  } = useContext(PaginationContext);
+    setMinPageNumber,
+    setMaxPageNumber,
+  } = useContext(PaginationContext)!;
 
-  const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState<Listing[]>([]);
 
   useEffect(() => {
     if (searchInput === "") {
-      axios
-        .get(
-          `http://localhost:3005/listings?_limit=7&_page=${paginationIndex}&_sort=${sort}`
-        )
-        .then((res) => {
-          const lastPageIndex = res.headers.link.split("_page");
-          setMaxItems(lastPageIndex[lastPageIndex.length - 1][1]);
-          setTotalListings(res.headers["x-total-count"]);
-          setListings(() => res.data);
-        });
+      getFetch("http://localhost:3005/listings", {
+        _page: paginationIndex,
+        _sort: sort,
+        _limit: 7,
+      }).then((res) => {
+        const lastPageIndex = res.headers.link!.split("_page");
+        setMaxItems(+lastPageIndex[lastPageIndex.length - 1][1]);
+        setTotalListings(+res.headers["x-total-count"]!);
+        setListings(() => res.data);
+      });
     } else {
-      axios
-        .get(
-          `http://localhost:3005/listings?_limit=10&_page=${paginationIndex}&_sort=${sort}&unit_id_like=${searchInput}`
-        )
-        .then((res) => {
-          const lastPageIndex = res.headers.link.split("_page");
-          setMaxItems(lastPageIndex[lastPageIndex.length - 1][1]);
-          setTotalListings(res.headers["x-total-count"]);
-          setListings(() => res.data);
-        });
+      getFetch("http://localhost:3005/listings", {
+        _page: paginationIndex,
+        _sort: sort,
+        _limit: 7,
+        unit_id_like: searchInput,
+      }).then((res) => {
+        const lastPageIndex = res.headers.link!.split("_page");
+        setMaxItems(+lastPageIndex[lastPageIndex.length - 1][1]);
+        setTotalListings(+res.headers["x-total-count"]!);
+        setListings(() => res.data);
+      });
     }
 
     return () => {};
   }, [paginationIndex, sort, searchInput]);
 
   useEffect(() => {
-    paginationIndex > 1 && setPaginationIndex(1);
+    if (paginationIndex > 1) {
+      setPaginationIndex(1);
+      setMinPageNumber(1);
+      setMaxPageNumber(5);
+    }
   }, [sort, searchInput]);
 
   return (
@@ -150,7 +160,7 @@ const Table = () => {
           </div>
         </div>
       </div>
-      <Pagination maxItems={maxItems} />
+      <Pagination />
       {showImagesModal && <ImagesModal />}
     </div>
   );

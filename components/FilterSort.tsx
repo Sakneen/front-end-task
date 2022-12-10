@@ -3,8 +3,8 @@ import { SearchContext } from "../context/SearchContext";
 import { SortContext } from "../context/SortContext";
 
 const FilterSort = () => {
-  const { searchInput, setSearchInput } = useContext(SearchContext);
-  const { setSort } = useContext(SortContext);
+  const { searchInput, setSearchInput } = useContext(SearchContext)!;
+  const { setSort } = useContext(SortContext)!;
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between mt-8">
       <div className="flex items-center">
