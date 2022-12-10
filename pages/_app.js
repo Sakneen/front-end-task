@@ -1,3 +1,4 @@
+import { ImagesModalContextProvider } from "../context/ImagesModalContext";
 import { PaginationContextProvider } from "../context/PaginationContext";
 import { SearchContextProvider } from "../context/SearchContext";
 import { SortContextProvider } from "../context/SortContext";
@@ -8,7 +9,9 @@ function MyApp({ Component, pageProps }) {
     <PaginationContextProvider>
       <SearchContextProvider>
         <SortContextProvider>
-          <Component {...pageProps} />
+          <ImagesModalContextProvider>
+            <Component {...pageProps} />
+          </ImagesModalContextProvider>
         </SortContextProvider>
       </SearchContextProvider>
     </PaginationContextProvider>

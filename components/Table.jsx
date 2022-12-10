@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  ChevronRightIcon,
-  ChevronLeftIcon,
-  XMarkIcon,
-} from "@heroicons/react/20/solid";
+
 import axios from "axios";
 import Pagination from "./Pagination";
 import { PaginationContext } from "../context/PaginationContext";
 import { SearchContext } from "../context/SearchContext";
 import { SortContext } from "../context/SortContext";
+import ImagesModal from "./ImagesModal";
+import { ImagesModalContext } from "../context/ImagesModalContext";
 
 const Table = () => {
   const { searchInput } = useContext(SearchContext);
   const { sort } = useContext(SortContext);
+  const { showImagesModal, setShowImagesModal, setModalImages } =
+    useContext(ImagesModalContext);
 
   const {
     paginationIndex,
@@ -22,9 +22,6 @@ const Table = () => {
     setTotalListings,
   } = useContext(PaginationContext);
 
-  const [showImagesModal, setShowImagesModal] = useState(false);
-  const [modalImages, setModalImages] = useState([]);
-  const [modalIndex, setModalIndex] = useState(0);
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
@@ -154,41 +151,7 @@ const Table = () => {
         </div>
       </div>
       <Pagination maxItems={maxItems} />
-      {showImagesModal && (
-        <div className="fixed flex justify-center items-center inset-0 bg-black bg-opacity-40">
-          <ChevronLeftIcon
-            className="w-10 text-white"
-            onClick={() => modalIndex > 0 && setModalIndex(modalIndex - 1)}
-          />
-          <div
-            className="h-96 w-[80%] max-w-[600px] bg-cover bg-center m-10 relative flex items-center"
-            style={{
-              backgroundImage: `url(${modalImages[modalIndex]})`,
-            }}
-          >
-            <div className="absolute h-full w-full top-0 backdrop-blur-sm" />
-            <img
-              src={`${modalImages[modalIndex]}`}
-              className="z-10 border-none"
-            />
-            <XMarkIcon
-              className="absolute top-5 right-5 h-7 w-7 p-1.5 bg-white text-[#0E1024] rounded-full cursor-pointer z-10"
-              onClick={() => {
-                setModalImages([]);
-                setModalIndex(0);
-                setShowImagesModal(false);
-              }}
-            />
-          </div>
-          <ChevronRightIcon
-            className="w-10 text-white"
-            onClick={() =>
-              modalIndex < modalImages.length - 1 &&
-              setModalIndex(modalIndex + 1)
-            }
-          />
-        </div>
-      )}
+      {showImagesModal && <ImagesModal />}
     </div>
   );
 };
