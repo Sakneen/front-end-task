@@ -5,6 +5,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { ImagesModalContext } from "../../../../context/ImagesModalContext";
+import Image from "next/image";
 
 const ImagesModal = () => {
   const {
@@ -22,13 +23,18 @@ const ImagesModal = () => {
         onClick={() => modalIndex > 0 && setModalIndex(modalIndex - 1)}
       />
       <div
-        className="h-96 w-[80%] max-w-[600px] bg-cover bg-center m-10 relative flex items-center"
+        className="h-96 w-[80%] max-w-[600px] bg-cover bg-center m-10 relative flex items-center justify-center"
         style={{
           backgroundImage: `url(${modalImages[modalIndex]})`,
         }}
       >
         <div className="absolute h-full w-full top-0 backdrop-blur-sm" />
-        <img src={`${modalImages[modalIndex]}`} className="z-10 border-none" />
+        <Image
+          src={`${modalImages[modalIndex]}`}
+          className="z-10 border-none "
+          width={600}
+          height={400}
+        />
         <XMarkIcon
           className="absolute top-5 right-5 h-7 w-7 p-1.5 bg-white text-[#0E1024] rounded-full cursor-pointer z-10"
           onClick={() => {
