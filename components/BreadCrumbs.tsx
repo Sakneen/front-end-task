@@ -1,5 +1,6 @@
 import React from "react";
-import { ChevronRightIcon, HomeIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 const BreadCrumbs = () => {
   return (
@@ -10,7 +11,10 @@ const BreadCrumbs = () => {
           <ol role="list" className="flex items-center space-x-4">
             <li>
               <div className="flex items-center">
-                <HomeIcon
+                <Image
+                  src={"/home.png"}
+                  width={15}
+                  height={15}
                   className="h-5 w-5 flex-shrink-0 text-gray-400"
                   aria-hidden="true"
                 />

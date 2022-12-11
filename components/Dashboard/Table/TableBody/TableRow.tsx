@@ -14,17 +14,17 @@ const TableRow = ({ listing, idx }: Props) => {
     useContext(ImagesModalContext)!;
   return (
     <tr className={idx % 2 === 0 ? "bg-[#F5F5F5]" : ""}>
-      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-6">
         {listing.unit_id}
       </td>
-      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <td className="whitespace-nowrap px-3 py-4 text-sm text-black">
         {listing.unit_type}
       </td>
-      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-        {(Math.abs(listing.total_price) / 1.0e6).toFixed(1)}
+      <td className="whitespace-nowrap px-3 py-4 text-sm text-black">
+        {(Math.abs(listing.total_price) / 1.0e6).toFixed(1)}M EGP
       </td>
-      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-        {listing.bua}
+      <td className="whitespace-nowrap px-3 py-4 text-sm text-black">
+        {listing.bua} m<sup>2</sup>
       </td>
       <td className={`whitespace-nowrap px-3 py-4 text-sm text-white`}>
         <div

@@ -30,15 +30,18 @@ const TableBody = () => {
         setListings(() => res.data);
       });
     } else {
-      getFetch("http://localhost:3005/listings", {
-        _page: paginationIndex,
-        _sort: sort,
-        _limit: itemsPerPage,
-        unit_id_like: searchInput,
-      }).then((res) => {
-        setMaxPages(getLastPageIndex(res.headers.link!));
-        setListings(() => res.data);
-      });
+      const delayDebounceFn = setTimeout(() => {
+        getFetch("http://localhost:3005/listings", {
+          _page: paginationIndex,
+          _sort: sort,
+          _limit: itemsPerPage,
+          unit_id_like: searchInput,
+        }).then((res) => {
+          setMaxPages(getLastPageIndex(res.headers.link!));
+          setListings(() => res.data);
+        });
+      }, 500);
+      return () => clearTimeout(delayDebounceFn);
     }
 
     return () => {};
