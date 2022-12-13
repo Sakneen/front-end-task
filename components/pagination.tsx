@@ -15,6 +15,7 @@ function Pagination({ homes, current, setPage, page }: Props) {
     return (
         <div className='flex justify-items-center place-content-center mt-4'>
             <button
+                data-testid='left'
                 className={`${page === '1' ? 'text-[#9E9E9E]' : ''}`}
                 disabled={page === '1'}
                 onClick={() => setPage((Number(page) - 1).toString())}
@@ -32,6 +33,7 @@ function Pagination({ homes, current, setPage, page }: Props) {
             )}
 
             <button
+                data-testid='right'
                 className={`${page === (homes.length / 5).toString() ? 'text-[#9E9E9E]' : ''}`}
                 disabled={page === (homes.length / 5).toString()}
                 onClick={() => setPage((Number(page) + 1).toString())}

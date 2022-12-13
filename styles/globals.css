@@ -19,6 +19,4 @@ body {
   src: url('/public/DM_Sans/DMSans-Medium.ttf');
   src: url('/public/DM_Sans/DMSans-MediumItalic.ttf');
   src: url('/public/DM_Sans/DMSans-Regular.ttf');
-  font-weight: 400;
-  font-style: normal;
 }

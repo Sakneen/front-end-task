@@ -43,9 +43,8 @@ function SortMenu({ current, setCurrent, sortOptions }: Props) {
                                                 <button
                                                     onClick={() => setCurrent(option)}
                                                     className={classNames(
-                                                        option.name === current.name ? 'font-medium text-gray-900' : 'text-gray-500',
                                                         active ? 'bg-gray-100' : '',
-                                                        'block px-4 py-2 text-sm w-full text-left'
+                                                        'block px-4 py-2 text-sm w-full text-left text-gray-900 font-medium'
                                                     )}
                                                 >
                                                     {option.name}

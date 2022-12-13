@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { Navigation } from "swiper";
 import 'swiper/css';
 import "swiper/css/navigation";

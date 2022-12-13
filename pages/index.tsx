@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Dashboard from '../components/dashboard'
 import Navbar from '../components/navbar'
 import Table from '../components/table'
@@ -19,7 +18,7 @@ export default function Home({ homes }: { homes: HomeType[] }) {
 
       <main >
         <Navbar />
-        <div className='lg:mx-[109px] mx-5'>
+        <div id='homeDiv' className='lg:mx-[109px] mx-5'>
           <Dashboard />
           <Table homes={homes} />
         </div>

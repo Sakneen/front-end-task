@@ -4,7 +4,7 @@ type Props = {}
 
 function Dashboard({ }: Props) {
     return (
-        <div className='mt-[64px]'>
+        <div data-testid='dashboard' className='mt-[64px]'>
             <p className='text-2xl font-normal mb-2'>Dashboard</p>
             <div className='h-[32px] bg-white flex'>
                 <svg className='m-2.5' width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">

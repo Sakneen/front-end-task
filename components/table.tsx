@@ -70,7 +70,7 @@ function Table({ homes }: Props) {
                     <thead>
                         <tr className='h-10 bg-white'>
                             {data.map((item, i) =>
-                                <th key={i} className={`hidden md:table-cell text-left leading-5 text-[16px] font-[500]`}>
+                                <th key={i} className={`hidden md:table-cell text-left leading-5 text-[16px]`}>
                                     <span className='mx-4 mb-2.5 mt-[18px]'>
                                         {item.name}
                                     </span>
