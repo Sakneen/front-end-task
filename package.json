@@ -1,25 +1,36 @@
 {
-  "name": "front-end-task",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "start:server": "json-server -p 3005 db.json",
-    "dev": "concurrently \"yarn start:server\" \"next dev\"",
-    "build": "next build",
-    "start": "concurrently \"yarn start:server\" \"next start\"",
-    "depcheck": "yarn-check -u",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "concurrently": "7.3.0",
-    "json-server": "^0.17.0",
-    "next": "12.2.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "yarn-check": "^0.0.3"
-  },
-  "devDependencies": {
-    "eslint": "8.20.0",
-    "eslint-config-next": "12.2.2"
-  }
+ "name": "front-end-task",
+ "version": "0.1.0",
+ "private": true,
+ "scripts": {
+  "start:server": "json-server -p 3005 db.json",
+  "dev": "concurrently \"npm run start:server\" \"next dev\"",
+  "build": "next build",
+  "start": "concurrently \"npm run start:server\" \"next start\"",
+  "depcheck": "yarn-check -u",
+  "lint": "next lint"
+ },
+ "dependencies": {
+  "@emotion/react": "^11.10.5",
+  "@emotion/styled": "^11.10.5",
+  "@headlessui/react": "^1.7.5",
+  "@heroicons/react": "^2.0.13",
+  "@mui/icons-material": "^5.10.16",
+  "@mui/material": "^5.10.17",
+  "axios": "^1.2.1",
+  "concurrently": "7.3.0",
+  "json-server": "^0.17.1",
+  "next": "12.2.2",
+  "react": "18.2.0",
+  "react-dom": "18.2.0",
+  "swiper": "^8.4.5",
+  "yarn-check": "^0.0.3"
+ },
+ "devDependencies": {
+  "autoprefixer": "^10.4.13",
+  "eslint": "8.20.0",
+  "eslint-config-next": "12.2.2",
+  "postcss": "^8.4.19",
+  "tailwindcss": "^3.2.4"
+ }
 }
