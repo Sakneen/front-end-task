@@ -5,10 +5,12 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <Box mt={8}>
+    <Box mt={8} role="banner">
       <Typography variant="h4">Dashboard</Typography>
       <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
+        separator={
+          <NavigateNextIcon fontSize="small" aria-label="Navigate next" />
+        }
         aria-label="breadcrumb"
         sx={{
           marginTop: "15px",
@@ -23,7 +25,7 @@ export function Header() {
           sx={{ display: "flex", alignItems: "center", gap: "2px" }}
           component={Link}
         >
-          <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" aria-label="Home" />
           Home
         </MuiLink>
         <MuiLink

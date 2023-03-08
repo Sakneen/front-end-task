@@ -8,7 +8,7 @@ import Link from "next/link";
 export function NavBar() {
   return (
     <Box>
-      <AppBar position="static">
+      <AppBar position="static" role="navigation">
         <Toolbar>
           <Link href="/" aria-label="Company logo - To home page">
             <RoofingIcon
