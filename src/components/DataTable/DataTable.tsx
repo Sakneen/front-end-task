@@ -1,20 +1,8 @@
 import { useGetData, useDebounce } from "@/hooks";
-import {
-  Pagination,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  Stack,
-} from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
 import { useState } from "react";
-import { ImagePreview } from "./ImagePreview/ImagePreview";
-import { SaleTag } from "./SaleTag/SaleTag";
-import { StyledTableRow } from "./StyledTableRow/StyledTableRow";
+import { Table } from "./Table/Table";
+
 import { TableFilters } from "./TableFilters/TableFilters";
 
 export function DataTable() {
@@ -27,6 +15,7 @@ export function DataTable() {
 
   const debouncedSetFilter = useDebounce((val: string) => {
     setFilter(val);
+    setPage(1);
   }, 500);
 
   const { isLoading, isError, data, error } = useGetData({
@@ -50,6 +39,10 @@ export function DataTable() {
     setPage(newPage);
   };
 
+  const handleOrderChange = () => {
+    setOrder((val) => (val === "asc" ? "desc" : "asc"));
+  };
+
   return (
     <>
       <TableFilters
@@ -57,51 +50,10 @@ export function DataTable() {
         selectValue={sort}
         onInputChange={handleInputChange}
         onSelectChange={handleSortChange}
+        onOrderChange={handleOrderChange}
+        disabled={isLoading}
       />
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Unit ID</TableCell>
-              <TableCell>Unit Type</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Build up area</TableCell>
-              <TableCell>For sale</TableCell>
-              <TableCell>Gallery</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data?.data?.map((x) => {
-              return (
-                <StyledTableRow key={x.unit_id}>
-                  <TableCell>
-                    <Typography>{x.unit_id}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>{x.unit_type}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>
-                      {(x.total_price / 1000000).toFixed(2)}M EGP
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>{x.bua} m&sup2;</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <SaleTag forSale={x.for_sale} />
-                  </TableCell>
-                  <TableCell>
-                    <Typography>
-                      <ImagePreview imgSrc={x.photos?.[0]} />
-                    </Typography>
-                  </TableCell>
-                </StyledTableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table data={data?.data} />
       <Stack alignItems={"center"} mt={3} mb={6}>
         <Pagination
           count={Math.ceil((data?.count ?? limit) / limit)}
@@ -109,6 +61,7 @@ export function DataTable() {
           variant="outlined"
           page={page}
           onChange={handlePageChange}
+          disabled={isLoading}
         />
       </Stack>
     </>

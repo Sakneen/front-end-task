@@ -1,5 +1,6 @@
 import {
   FormControl,
+  IconButton,
   MenuItem,
   Select,
   Stack,
@@ -13,6 +14,8 @@ interface Props {
   onInputChange: (val: string) => void;
   selectValue: string;
   onSelectChange: (val: string) => void;
+  onOrderChange: () => void;
+  disabled: boolean;
 }
 
 export function TableFilters({
@@ -20,6 +23,8 @@ export function TableFilters({
   onInputChange,
   selectValue,
   onSelectChange,
+  onOrderChange,
+  disabled,
 }: Props) {
   return (
     <Stack
@@ -51,7 +56,9 @@ export function TableFilters({
         />
       </Stack>
       <Stack direction="row" alignItems="center">
-        <FilterListIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+        <IconButton onClick={onOrderChange} disabled={disabled}>
+          <FilterListIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+        </IconButton>
         <Typography
           variant="caption"
           component="label"
@@ -68,6 +75,7 @@ export function TableFilters({
             }}
             label="Age"
             size="small"
+            disabled={disabled}
           >
             <MenuItem value={"unit_id"}>Unit ID</MenuItem>
             <MenuItem value={"unit_type"}>Unit Type</MenuItem>

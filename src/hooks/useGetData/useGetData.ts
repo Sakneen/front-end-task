@@ -8,7 +8,7 @@ type GetDataOptions = {
   order: "asc" | "desc";
 };
 
-type Response = Array<{
+export type ApiResponse = Array<{
   _id: string;
   unit_id: string;
   unit_type: string;
@@ -25,7 +25,7 @@ export const fetchData = async ({
   limit,
   order,
 }: GetDataOptions): Promise<{
-  data: Response;
+  data: ApiResponse;
   count: number;
 }> => {
   const params = new URLSearchParams({
