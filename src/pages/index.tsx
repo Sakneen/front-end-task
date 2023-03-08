@@ -1,3 +1,4 @@
+import { Container } from "@mui/system";
 import Head from "next/head";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
         <title>Front end task</title>
         <meta name="description" content="Sakneen Front End Task" />
       </Head>
+      <Container></Container>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { CssBaseline } from "@mui/material";
-import { NavBar } from "@/components";
+import { NavBar, Footer } from "@/components";
 import { ReactElement } from "react";
 
 interface Props {
@@ -12,6 +12,7 @@ export function Layout({ children }: Props) {
       <CssBaseline />
       <NavBar />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
