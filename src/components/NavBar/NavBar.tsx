@@ -7,10 +7,10 @@ import Link from "next/link";
 
 export function NavBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar>
-          <Link href="/">
+          <Link href="/" aria-label="Company logo - To home page">
             <RoofingIcon
               sx={{
                 color: "white",
