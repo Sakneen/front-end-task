@@ -53,10 +53,15 @@ export function TableFilters({
           onChange={(e) => {
             onInputChange(e.target.value);
           }}
+          data-testid="filter-input"
         />
       </Stack>
       <Stack direction="row" alignItems="center">
-        <IconButton onClick={onOrderChange} disabled={disabled}>
+        <IconButton
+          onClick={onOrderChange}
+          disabled={disabled}
+          data-testid="sort-order"
+        >
           <FilterListIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         </IconButton>
         <Typography
@@ -76,6 +81,7 @@ export function TableFilters({
             label="Age"
             size="small"
             disabled={disabled}
+            data-testid="sort-by"
           >
             <MenuItem value={"unit_id"}>Unit ID</MenuItem>
             <MenuItem value={"unit_type"}>Unit Type</MenuItem>

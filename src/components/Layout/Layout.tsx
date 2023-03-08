@@ -1,6 +1,7 @@
 import { Box, CssBaseline } from "@mui/material";
-import { NavBar, Footer } from "@/components";
 import { ReactElement } from "react";
+import { Footer } from "../Footer/Footer";
+import { NavBar } from "../NavBar/NavBar";
 
 interface Props {
   children: ReactElement;

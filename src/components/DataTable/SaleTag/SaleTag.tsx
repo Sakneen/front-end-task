@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 
 interface Props {
   forSale: boolean;
