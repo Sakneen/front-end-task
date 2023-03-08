@@ -28,6 +28,7 @@ export function TableFilters({
       alignItems="center"
       sx={{ flexWrap: "wrap" }}
       mt={2}
+      mb={2}
     >
       <Stack direction="row" alignItems="center">
         <Typography
