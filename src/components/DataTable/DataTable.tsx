@@ -1,3 +1,4 @@
+import { useGetData, useDebounce } from "@/hooks";
 import {
   Pagination,
   Paper,
@@ -18,11 +19,27 @@ import { TableFilters } from "./TableFilters/TableFilters";
 
 export function DataTable() {
   const [filter, setFilter] = useState("");
+  const [input, setInput] = useState("");
   const [sort, setSort] = useState("unit_id");
   const [page, setPage] = useState(1);
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const [limit, setLimit] = useState(5);
 
-  const handleFilterChange = (val: string) => {
+  const debouncedSetFilter = useDebounce((val: string) => {
     setFilter(val);
+  }, 500);
+
+  const { isLoading, isError, data, error } = useGetData({
+    id: filter,
+    sort,
+    page,
+    limit,
+    order,
+  });
+
+  const handleInputChange = (val: string) => {
+    setInput(val);
+    debouncedSetFilter(val);
   };
 
   const handleSortChange = (val: string) => {
@@ -36,9 +53,9 @@ export function DataTable() {
   return (
     <>
       <TableFilters
-        inputValue={filter}
+        inputValue={input}
         selectValue={sort}
-        onInputChange={handleFilterChange}
+        onInputChange={handleInputChange}
         onSelectChange={handleSortChange}
       />
       <TableContainer component={Paper}>
@@ -54,34 +71,40 @@ export function DataTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <StyledTableRow>
-              <TableCell>
-                <Typography>Id 144324</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography>Id 144324</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography>Id 144324</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography>Id 144324</Typography>
-              </TableCell>
-              <TableCell>
-                <SaleTag forSale />
-              </TableCell>
-              <TableCell>
-                <Typography>
-                  <ImagePreview imgSrc="https://freeaussiestock.com/free/South_Australia/slides/river_torrens.jpg" />
-                </Typography>
-              </TableCell>
-            </StyledTableRow>
+            {data?.data?.map((x) => {
+              return (
+                <StyledTableRow key={x.unit_id}>
+                  <TableCell>
+                    <Typography>{x.unit_id}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>{x.unit_type}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>
+                      {(x.total_price / 1000000).toFixed(2)}M EGP
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>{x.bua} m&sup2;</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <SaleTag forSale={x.for_sale} />
+                  </TableCell>
+                  <TableCell>
+                    <Typography>
+                      <ImagePreview imgSrc={x.photos?.[0]} />
+                    </Typography>
+                  </TableCell>
+                </StyledTableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
-      <Stack alignItems={"center"} mt={3}>
+      <Stack alignItems={"center"} mt={3} mb={6}>
         <Pagination
-          count={10}
+          count={Math.ceil((data?.count ?? limit) / limit)}
           color="primary"
           variant="outlined"
           page={page}
