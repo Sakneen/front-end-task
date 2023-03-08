@@ -18,7 +18,7 @@ type Response = Array<{
   bua: number;
 }>;
 
-const fetchData = async ({
+export const fetchData = async ({
   id,
   sort,
   page,
@@ -61,10 +61,11 @@ export const useGetData = ({
   limit,
   order,
 }: GetDataOptions) => {
-  const queryKey = ["getData", { id, sort, page, limit, order }];
+  const queryKey = ["getData", id, sort, page, limit, order];
 
   return useQuery({
     queryKey,
     queryFn: () => fetchData({ id, sort, page, limit, order }),
+    keepPreviousData: true,
   });
 };
