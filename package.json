@@ -10,7 +10,7 @@
     "start:server": "json-server -p 3005 db.json",
     "dev": "concurrently \"yarn start:server\" \"next dev\"",
     "build": "next build",
-    "start": "concurrently \"yarn start:server\" \"next start\"",
+    "start": "next start",
     "depcheck": "yarn-check -u",
     "lint": "next lint",
     "test": "jest --watch"

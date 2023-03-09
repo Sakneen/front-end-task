@@ -18,6 +18,8 @@ export type ApiResponse = Array<{
   bua: number;
 }>;
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export const fetchData = async ({
   id,
   sort,
@@ -33,9 +35,7 @@ export const fetchData = async ({
 
     const paramsWithId = `${params}&unit_id=${id}`;
 
-    const response = await fetch(
-      `http://localhost:3005/listings?${id ? paramsWithId : params}`
-    );
+    const response = await fetch(`${API_URL}${id ? paramsWithId : params}`);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
