@@ -1,5 +1,5 @@
 import { useDebounce } from "@/hooks";
-import { Pagination, Stack } from "@mui/material";
+import { Alert, Pagination, Stack } from "@mui/material";
 import { useState } from "react";
 import { useGetData } from "../../hooks";
 import { Table } from "../Table/Table";
@@ -12,7 +12,7 @@ export function DataTable() {
   const [sort, setSort] = useState("unit_id");
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState<"asc" | "desc">("asc");
-  const [limit, setLimit] = useState(5);
+  const [limit] = useState(5);
 
   const debouncedSetFilter = useDebounce((val: string) => {
     setFilter(val);
@@ -48,6 +48,7 @@ export function DataTable() {
 
   return (
     <>
+      {isError && <Alert severity="error">{error as string}</Alert>}
       <TableFilters
         inputValue={input}
         selectValue={sort}

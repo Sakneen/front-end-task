@@ -28,23 +28,26 @@ export const fetchData = async ({
   data: ApiResponse;
   count: number;
 }> => {
-  console.log(id, sort, page, limit, order);
-  const params = `_limit=${limit}&_sort=${sort}&_order=${order}&_page=${page}`;
+  try {
+    const params = `_limit=${limit}&_sort=${sort}&_order=${order}&_page=${page}`;
 
-  const paramsWithId = `${params}&unit_id=${id}`;
+    const paramsWithId = `${params}&unit_id=${id}`;
 
-  const response = await fetch(
-    `http://localhost:3005/listings?${id ? paramsWithId : params}`
-  );
+    const response = await fetch(
+      `http://localhost:3005/listings?${id ? paramsWithId : params}`
+    );
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+
+    const count = response.headers.get("x-total-count") ?? 0;
+    const data = await response.json();
+
+    return { data, count: +count };
+  } catch (err) {
+    throw err;
   }
-
-  const count = response.headers.get("x-total-count") ?? 0;
-  const data = await response.json();
-
-  return { data, count: +count };
 };
 
 export const useGetData = ({
