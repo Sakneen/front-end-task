@@ -33,6 +33,10 @@ export const ImageViewer = ({ images, open, onClose }: Props) => {
     );
   };
 
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [images]);
+
   // Support changing the images by the arrow keys
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
