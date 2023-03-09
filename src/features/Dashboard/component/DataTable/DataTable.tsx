@@ -1,9 +1,10 @@
-import { useGetData, useDebounce } from "@/hooks";
+import { useDebounce } from "@/hooks";
 import { Pagination, Stack } from "@mui/material";
 import { useState } from "react";
-import { Table } from "./Table/Table";
+import { useGetData } from "../../hooks";
+import { Table } from "../Table/Table";
 
-import { TableFilters } from "./TableFilters/TableFilters";
+import { TableFilters } from "../TableFilters/TableFilters";
 
 export function DataTable() {
   const [filter, setFilter] = useState("");
@@ -33,6 +34,7 @@ export function DataTable() {
 
   const handleSortChange = (val: string) => {
     setSort(val);
+    setPage(1);
   };
 
   const handlePageChange = (e: unknown, newPage: number) => {
@@ -41,6 +43,7 @@ export function DataTable() {
 
   const handleOrderChange = () => {
     setOrder((val) => (val === "asc" ? "desc" : "asc"));
+    setPage(1);
   };
 
   return (

@@ -1,6 +1,5 @@
-import { DataTable, Header } from "@/components";
-import { fetchData } from "@/hooks";
-import { Container } from "@mui/system";
+import { DashBoard } from "@/features/Dashboard";
+import { fetchData } from "@/features/Dashboard/hooks";
 import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
 
@@ -11,10 +10,7 @@ export default function Home() {
         <title>Front end task</title>
         <meta name="description" content="Sakneen Front End Task" />
       </Head>
-      <Container>
-        <Header />
-        <DataTable />
-      </Container>
+      <DashBoard />
     </>
   );
 }

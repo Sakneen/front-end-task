@@ -1,5 +1,3 @@
-import { ImageViewer } from "@/components/ImageViewer/ImageViewer";
-import { ApiResponse } from "@/hooks";
 import {
   Paper,
   Table as MuiTable,
@@ -11,7 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { ApiResponse } from "../../hooks";
 import { ImagePreview } from "../ImagePreview/ImagePreview";
+import { ImageViewer } from "../ImageViewer/ImageViewer";
 import { SaleTag } from "../SaleTag/SaleTag";
 import { StyledTableRow } from "../StyledTableRow/StyledTableRow";
 
