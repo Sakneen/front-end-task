@@ -1,5 +1,11 @@
 # Sakneen Front End Task
 
+Deployed WebSite: [LivePage](https://sakneen-task.onrender.com/)
+
+you might run into issues sometime getting the data, that's because i'm hosting json-server on a free tier server and it keeps crashing.     
+For best results clone the repo and run the code locally.
+
+
 :wave: This is a NextJS React app interview challenge. Please fork this repo, and push your code to a branch in your forked repo (following the instructions below).
 
 In this exercise you will be implementing a new page that will have a table displaying a bunch of units (apartments, villas...). The design can be found [here](https://www.figma.com/file/SYWCrd5A18H44UoxJBfUW2/Frontend-task?node-id=0%3A1) You might need to sign up to be able to inspect the figma design
