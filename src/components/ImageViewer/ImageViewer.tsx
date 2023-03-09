@@ -37,9 +37,13 @@ export const ImageViewer = ({ images, open, onClose }: Props) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") {
-        handlePreviousImage();
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        );
       } else if (event.key === "ArrowRight") {
-        handleNextImage();
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
       }
     };
 
@@ -48,7 +52,7 @@ export const ImageViewer = ({ images, open, onClose }: Props) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [currentImageIndex, images.length]);
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md">
@@ -92,7 +96,7 @@ export const ImageViewer = ({ images, open, onClose }: Props) => {
 
       <img
         src={images[currentImageIndex]}
-        alt={`Image ${currentImageIndex + 1}`}
+        alt={`Property Image ${currentImageIndex + 1}`}
       />
     </Dialog>
   );
