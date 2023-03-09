@@ -19,7 +19,7 @@ export function DataTable() {
     setPage(1);
   }, 500);
 
-  const { isLoading, isError, data, error } = useGetData({
+  const { isLoading, isError, data } = useGetData({
     id: filter,
     sort,
     page,
@@ -48,7 +48,9 @@ export function DataTable() {
 
   return (
     <>
-      {isError && <Alert severity="error">{error as string}</Alert>}
+      {isError && (
+        <Alert severity="error">An Error happened please try again</Alert>
+      )}
       <TableFilters
         inputValue={input}
         selectValue={sort}
