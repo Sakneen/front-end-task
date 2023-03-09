@@ -7,7 +7,7 @@ export const useDebounce = <A = unknown, R = void>(
 ): ((args: A) => Promise<R>) => {
   const [debouncedFun, teardown] = debounce<A, R>(fn, ms);
 
-  useEffect(() => () => teardown(), [teardown]);
+  useEffect(() => () => teardown(), []);
 
   return debouncedFun;
 };
