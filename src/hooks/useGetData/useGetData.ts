@@ -28,17 +28,10 @@ export const fetchData = async ({
   data: ApiResponse;
   count: number;
 }> => {
-  const params = new URLSearchParams({
-    _limit: limit.toString(),
-    _sort: sort,
-    _order: order,
-    _page: page.toString(),
-  });
+  console.log(id, sort, page, limit, order);
+  const params = `_limit=${limit}&_sort=${sort}&_order=${order}&_page=${page}`;
 
-  const paramsWithId = new URLSearchParams({
-    unit_id: id ?? "",
-    ...params,
-  });
+  const paramsWithId = `${params}&unit_id=${id}`;
 
   const response = await fetch(
     `http://localhost:3005/listings?${id ? paramsWithId : params}`
@@ -67,5 +60,6 @@ export const useGetData = ({
     queryKey,
     queryFn: () => fetchData({ id, sort, page, limit, order }),
     keepPreviousData: true,
+    staleTime: 1000 * 60 * 5,
   });
 };
