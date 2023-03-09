@@ -1,5 +1,5 @@
 import { Container } from "@mui/system";
-import { DataTable, Header } from "./Dashboard/component";
+import { DataTable, Header } from "./component";
 
 export function DashBoard() {
   return (
