@@ -1,0 +1,45 @@
+[
+  {
+    "_id": "5f3a98e1a8e101006d245114",
+    "for_sale": "FOR SALE",
+    "photos": [
+      "https://img.sakneen.com/1616632176084-fHqYA.jpg",
+      "https://img.sakneen.com/1616632176143-kvFES.jpg",
+      "https://img.sakneen.com/1616632176155-LAtgn.jpg",
+      "https://img.sakneen.com/1616632176168-uIdaw.jpg",
+      "https://img.sakneen.com/1616632176171-lVxWE.jpg"
+    ],
+    "unit_id": "C1-B1-6-1",
+    "total_price": 4540100,
+    "unit_type": "apartment",
+    "bua": 186
+  },
+  {
+    "_id": "5f3a98e0a8e101006d24510e",
+    "for_sale": "FOR SALE",
+    "photos": [
+      "https://img.sakneen.com/1616632065744-ydInb.jpg",
+      "https://img.sakneen.com/1616632065762-xCfem.jpg",
+      "https://img.sakneen.com/1616632065765-cClDE.jpg",
+      "https://img.sakneen.com/1616632065766-iCzOh.jpg",
+      "https://img.sakneen.com/1616632065777-SqMnQ.jpg"
+    ],
+    "unit_id": "C1-A1-G-2",
+    "total_price": 3110600,
+    "unit_type": "apartment",
+    "bua": 139
+  },
+  {
+    "_id": "5f3a98e1a8e101006d245113",
+    "for_sale": "FOR SALE",
+    "photos": [
+      "https://img.sakneen.com/1616633630073-qabIx.jpg",
+      "https://img.sakneen.com/1616633630084-Fksre.jpg",
+      "https://img.sakneen.com/1616633630086-wXSJX.jpg"
+    ],
+    "unit_id": "C3-CH13-1-1",
+    "total_price": 5970000,
+    "unit_type": "chalet",
+    "bua": 180
+  }
+]

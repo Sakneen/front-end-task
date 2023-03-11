@@ -1,0 +1,24 @@
+const sortValues = {
+  'Unit ID': 'unit_id',
+  'Unit type': 'unit_type',
+  'Unit Price': 'total_price',
+};
+
+async function getUnits(
+  pageToFetch: number = 1,
+  sort: string = 'Unit ID',
+  filter?: string,
+  limit: number = 5,
+  order: string = 'desc'
+) {
+  const sortvalue = sortValues[sort as keyof typeof sortValues];
+  let url = `http://localhost:3005/listings?_page=${pageToFetch}&_limit=${limit}&_sort=${sortvalue}&_order=${order}`;
+  if (filter) url = `http://localhost:3005/listings?unit_id=${filter}`;
+
+  let res = await fetch(url);
+  const data = await res.json();
+
+  return data;
+}
+
+export { getUnits };
