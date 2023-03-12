@@ -13,8 +13,9 @@ async function getUnits(
 ) {
   try {
     const sortvalue = sortValues[sort as keyof typeof sortValues];
-    let url = `http://localhost:3005/listings?_page=${pageToFetch}&_limit=${limit}&_sort=${sortvalue}&_order=${order}`;
-    if (filter) url = `http://localhost:3005/listings?unit_id=${filter}`;
+    let url = `${process.env.NEXT_PUBLIC_BASE_URL}/listings?_page=${pageToFetch}&_limit=${limit}&_sort=${sortvalue}&_order=${order}`;
+    if (filter)
+      url = `${process.env.NEXT_PUBLIC_BASE_URL}/listings?unit_id=${filter}`;
 
     let res = await fetch(url);
     const data = await res.json();

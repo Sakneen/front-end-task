@@ -334,42 +334,47 @@ function TableList() {
           </TableContainer>
 
           {/* Pagination section */}
-          <Pagination
-            size={isSmallScreen ? 'small' : 'medium'}
-            onChange={handlePageChange}
-            count={10}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBlockStart: '1em',
-            }}
-            color="primary"
-            renderItem={(item) => {
-              // console.log(item);
-              // if (item.selected) {
-              //   item.color = 'secondary';
-              // } else {
-              //   item.color = 'primary';
-              // }
-              // if (item.type === 'previous') item.color = 'primary';
-              return (
-                <PaginationItem
-                  //     slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                  {...item}
-                  sx={{
-                    backgroundColor:
-                      item.type === 'previous' || item.type === 'next'
-                        ? 'transparent'
-                        : item.selected
-                        ? 'secondary'
-                        : '#E5E5E5',
-                  }}
-                  color="secondary"
-                />
-              );
-            }}
-          />
+          {units && units.length < 5 ? (
+            ''
+          ) : (
+            <Pagination
+              size={isSmallScreen ? 'small' : 'medium'}
+              onChange={handlePageChange}
+              count={10}
+              page={pageToFetch}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBlockStart: '1em',
+              }}
+              color="primary"
+              renderItem={(item) => {
+                // console.log(item);
+                // if (item.selected) {
+                //   item.color = 'secondary';
+                // } else {
+                //   item.color = 'primary';
+                // }
+                // if (item.type === 'previous') item.color = 'primary';
+                return (
+                  <PaginationItem
+                    //     slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                    {...item}
+                    sx={{
+                      backgroundColor:
+                        item.type === 'previous' || item.type === 'next'
+                          ? 'transparent'
+                          : item.selected
+                          ? 'secondary'
+                          : '#E5E5E5',
+                    }}
+                    color="secondary"
+                  />
+                );
+              }}
+            />
+          )}
         </>
       ) : units && !units.length && !isError ? (
         <Alert variant="filled" severity="info">

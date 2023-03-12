@@ -7,7 +7,7 @@
     "npm": ">=8.x"
   },
   "scripts": {
-    "start:server": "json-server -p 3005 db.json --no-cors",
+    "start:server": "json-server -p 3005 db.json",
     "cypress:open": "Cypress open",
     "cypress:test": "Cypress run",
     "dev": "concurrently \"yarn start:server\" \"next dev\"",

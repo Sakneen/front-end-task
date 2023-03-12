@@ -3,7 +3,6 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
 
 describe('Units List', function () {
   beforeEach(function () {
-    //m7tag 27ot deh 2bl ma5osh 3ala el localhost fl beforeeach, 3shan lw 3mlt el localhost el 2wal s3tha hynfz el data ele gaya mn el api ele fl localhost el 2wal, enma ana 3ayz 2a2lo eno y3ml intercept el 2wal w ydene data mo3yna fl fixtures (y3ny mn el 25er kda i should stub the request before the request already made)
     cy.intercept(
       'GET',
       'http://localhost:3005/listings?_page=1&_limit=5&_sort=unit_id&_order=desc',
