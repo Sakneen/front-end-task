@@ -4,7 +4,7 @@
 
 - To make the Task work Live, I have deployed the dbjson server to vercel as well.
 - If you want to still run the project Locally, I have left the .env files in the repo to make things easier.
-- Task Link:
+- Task Link: https://front-end-task-p3y9pztlt-mohammed-hossam.vercel.app/
 
 ## (2) Assumptions
 
