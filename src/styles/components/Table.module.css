@@ -1,5 +1,5 @@
 
-.dashboard__table{
+.table{
     background-color: #FFFFFF;
     padding: 0.8rem 0 0;
     border-radius: 0.4rem;
@@ -7,8 +7,7 @@
     overflow-x: scroll;
 }
 
-.dashboard__table__head{
-    padding: 0.8rem 1.6rem;
+.table__head{
     box-shadow: inset 0rem -0.1rem 0rem #E5E5E5;
     font-weight: 500;
     font-size: 1.6rem;
@@ -17,15 +16,36 @@
     min-width: 800px;
 }
 
-.dashboard__table__body{
-    min-width: 800px;
-}
-
-.dashboard__table__body__row{
-    padding: 1.6rem;
+.table__head__row{
+    padding: 0.8rem 1.6rem;
     margin: 0;
 }
 
-.dashboard__table__body__row:nth-of-type(odd){
+.table__body{
+    min-width: 800px;
+}
+
+.table__body__row{
+    padding: 1.6rem;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.table__body__row:nth-of-type(odd){
     background-color: var(--bg-color-second);
+}
+
+.table__forsale span{
+    background-color: var(--bg-color-main);
+    color: var(--text-color-fourth);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.3rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    text-align: center;
+}
+
+.table__notforsale span {
+    background-color: var(--bg-color-third);
 }

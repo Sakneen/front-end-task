@@ -2,22 +2,19 @@ import Head from "next/head";
 import { Breadcrumb, Icon, PageTitle, Pagination, Table } from "@/components";
 import Link from "next/link";
 import styles from "@/styles/pages/Dashboard.module.css";
-import { InferGetStaticPropsType } from "next";
+import { useState } from "react";
 
-type Unit = {
-  _id: string;
-  unit_id: string;
-  unit_type: string;
-  total_price: number;
-  bua: number;
-  for_sale: boolean;
-  photos: string[];
-};
+export default function dashboard({ data }: any) {
+  const [filteredUnits, setFilteredUnits] = useState(data);
 
-export default function dashboard({
-  data,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  data && console.log(data);
+  const handleIdFilter = (e: any) => {
+    // setValue(e.target.value);
+    const filtered = data.filter((unit: any) =>
+      unit.unit_id.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredUnits(filtered);
+    console.log(filteredUnits);
+  };
 
   return (
     <>
@@ -35,7 +32,11 @@ export default function dashboard({
               className={`d-flex align-items-center ${styles.dashboard__filter}`}
             >
               <h4>Filters by ID:</h4>
-              <input type="text" placeholder="ex: 45785" />
+              <input
+                type="text"
+                placeholder="ex: 45785"
+                onChange={(e) => handleIdFilter(e)}
+              />
             </div>
           </div>
           <div className="col-sm-6">
@@ -90,7 +91,7 @@ export default function dashboard({
 
         <div className="row mb-4">
           <div className="col-md-12">
-            <Table units={data} />
+            <Table units={filteredUnits} />
           </div>
         </div>
 
@@ -106,8 +107,7 @@ export default function dashboard({
 
 export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3005/listings");
-  const data: Unit[] = await res.json();
-  console.log(data);
+  const data = await res.json();
 
   return {
     props: {
