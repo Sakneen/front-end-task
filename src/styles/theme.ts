@@ -17,7 +17,6 @@ export const dmSans = DM_Sans({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
-// Create a theme instance.
 let theme = createTheme({
   palette: {
     primary: {
