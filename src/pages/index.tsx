@@ -4,29 +4,9 @@ import TableList from '@/components/table';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { getUnits } from '@/utils/getUnits';
 
-const unit_type = {
-  penthouse: 'penthouse',
-  apartment: 'apartment',
-  townHouse: 'town house',
-  twinHouse: 'twin house',
-  chalet: 'duplex',
-} as const;
+// type HomeProps = { units: unit[] };
 
-type unitType = keyof typeof unit_type;
-
-type unit = {
-  _id: string;
-  for_sale: boolean;
-  photos: string[];
-  unit_id: string;
-  total_price: number;
-  unit_type: unitType;
-  bua: number;
-};
-
-type HomeProps = { units: unit[] };
-
-export default function Home({ units }: HomeProps) {
+export default function Home() {
   // console.log(units);
 
   return (

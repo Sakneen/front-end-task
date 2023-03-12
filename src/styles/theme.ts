@@ -34,6 +34,10 @@ let theme = createTheme({
       main: 'red',
       contrastText: '#fff',
     },
+    // info: {
+    //   main: '#2419BE',
+    //   contrastText: '#fff',
+    // },
     error: {
       main: red.A400,
     },

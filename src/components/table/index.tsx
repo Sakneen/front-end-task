@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import Box from '@mui/material/Box';
@@ -100,13 +102,12 @@ function TableList() {
     if (clickedText) setCurrentSort(clickedText);
   };
 
-  function handlePageChange(e, value: number) {
+  function handlePageChange(e: React.ChangeEvent<unknown>, value: number) {
     console.log(value);
     // setSelectedPage(value);
     // const valueToFetch = Math.round(value / 2);
     const valueToFetch = value;
     console.log('valueToFetch', valueToFetch);
-
     setPageToFetch(valueToFetch);
   }
 
@@ -122,7 +123,7 @@ function TableList() {
     isLoading,
     isError,
     error,
-  } = useQuery({
+  } = useQuery<units>({
     queryKey: ['units', pageToFetch, currentSort, debouncedFilter],
     queryFn: () => getUnits(pageToFetch, currentSort, debouncedFilter),
     keepPreviousData: true,
@@ -130,6 +131,7 @@ function TableList() {
   });
 
   console.log(units);
+  console.log(isError);
 
   return (
     <>
@@ -234,33 +236,36 @@ function TableList() {
         </Box>
       </Box>
 
-      {/* table section */}
-
-      <TableContainer
-        component={Paper}
-        elevation={2}
-        sx={{ backgroundColor: 'transparent' }}
-      >
-        {/* <Paper elevation={3} ></Paper> */}
-        <Table
-          sx={{ minWidth: 700 }}
-          aria-label="customized table"
-          size={isSmallScreen ? 'small' : 'medium'}
-        >
-          <TableHead>
-            <TableRow>
-              <StyledHeaderCell align="left">Unit ID</StyledHeaderCell>
-              <StyledHeaderCell align="left">Unit type</StyledHeaderCell>
-              <StyledHeaderCell align="left">Price</StyledHeaderCell>
-              <StyledHeaderCell align="left">Build up area</StyledHeaderCell>
-              <StyledHeaderCell align="left">For sale</StyledHeaderCell>
-              <StyledHeaderCell align="left">Gallery</StyledHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {units?.map((row) => (
-              <StyledTableRow key={row._id}>
-                {/* <StyledTableCell align="left">
+      {units && units.length > 0 ? (
+        <>
+          {/* table section */}
+          <TableContainer
+            component={Paper}
+            elevation={2}
+            sx={{ backgroundColor: 'transparent' }}
+          >
+            {/* <Paper elevation={3} ></Paper> */}
+            <Table
+              sx={{ minWidth: 700 }}
+              aria-label="customized table"
+              size={isSmallScreen ? 'small' : 'medium'}
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledHeaderCell align="left">Unit ID</StyledHeaderCell>
+                  <StyledHeaderCell align="left">Unit type</StyledHeaderCell>
+                  <StyledHeaderCell align="left">Price</StyledHeaderCell>
+                  <StyledHeaderCell align="left">
+                    Build up area
+                  </StyledHeaderCell>
+                  <StyledHeaderCell align="left">For sale</StyledHeaderCell>
+                  <StyledHeaderCell align="left">Gallery</StyledHeaderCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {units?.map((row) => (
+                  <StyledTableRow key={row._id}>
+                    {/* <StyledTableCell align="left">
                   {isLoading && isFetching ? <Skeleton /> : 'hereee'}
                 </StyledTableCell>
                 <StyledTableCell align="left">
@@ -278,90 +283,103 @@ function TableList() {
                 <StyledTableCell align="left">
                   {units.length > 0 ? 'hereee' : <Skeleton />}
                 </StyledTableCell> */}
-                {/* <StyledTableCell align="left">
+                    {/* <StyledTableCell align="left">
                   {!isLoading && isFetching ? <Skeleton /> : row.unit_id}
                 </StyledTableCell> */}
-                <StyledTableCell align="left">{row.unit_id}</StyledTableCell>
-                <StyledTableCell align="left">{row.unit_type}</StyledTableCell>
-                <StyledTableCell align="left">
-                  {`${formatter.format(row.total_price)} EGP`}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.bua} m<sup>2</sup>
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Button
-                    disableElevation
-                    variant="contained"
-                    size="small"
-                    color={row.for_sale ? 'secondary' : 'primary'}
-                    sx={{
-                      backgroundColor: row.for_sale ? '#2419BE' : '#616161',
-                      color: 'white',
-                    }}
-                  >
-                    {row.for_sale ? 'FOR SALE' : 'NOT FOR SALE'}
-                  </Button>
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.photos[0] ? (
-                    <Image
-                      src={row.photos[0]}
-                      alt="unit pic"
-                      width={40}
-                      height={40}
-                      priority
-                      style={{ cursor: 'pointer' }}
-                      onClick={() => handleOpenModal(row.photos)}
-                    />
-                  ) : (
-                    'No Pics Founds'
-                  )}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                    <StyledTableCell align="left">
+                      {row.unit_id}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {row.unit_type}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {`${formatter.format(row.total_price)} EGP`}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {row.bua} m<sup>2</sup>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      <Button
+                        disableElevation
+                        variant="contained"
+                        size="small"
+                        color={row.for_sale ? 'secondary' : 'primary'}
+                        sx={{
+                          backgroundColor: row.for_sale ? '#2419BE' : '#616161',
+                          color: 'white',
+                        }}
+                      >
+                        {row.for_sale ? 'FOR SALE' : 'NOT FOR SALE'}
+                      </Button>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {row.photos[0] ? (
+                        <Image
+                          src={row.photos[0]}
+                          alt="unit pic"
+                          width={40}
+                          height={40}
+                          priority
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => handleOpenModal(row.photos)}
+                        />
+                      ) : (
+                        'No Pics Founds'
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
 
-      {/* Pagination section */}
-
-      <Pagination
-        size={isSmallScreen ? 'small' : 'medium'}
-        onChange={handlePageChange}
-        count={10}
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBlockStart: '1em',
-        }}
-        color="primary"
-        renderItem={(item) => {
-          // console.log(item);
-          // if (item.selected) {
-          //   item.color = 'secondary';
-          // } else {
-          //   item.color = 'primary';
-          // }
-          // if (item.type === 'previous') item.color = 'primary';
-          return (
-            <PaginationItem
-              //     slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-              {...item}
-              sx={{
-                backgroundColor:
-                  item.type === 'previous' || item.type === 'next'
-                    ? 'transparent'
-                    : item.selected
-                    ? 'secondary'
-                    : '#E5E5E5',
-              }}
-              color="secondary"
-            />
-          );
-        }}
-      />
+          {/* Pagination section */}
+          <Pagination
+            size={isSmallScreen ? 'small' : 'medium'}
+            onChange={handlePageChange}
+            count={10}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBlockStart: '1em',
+            }}
+            color="primary"
+            renderItem={(item) => {
+              // console.log(item);
+              // if (item.selected) {
+              //   item.color = 'secondary';
+              // } else {
+              //   item.color = 'primary';
+              // }
+              // if (item.type === 'previous') item.color = 'primary';
+              return (
+                <PaginationItem
+                  //     slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                  {...item}
+                  sx={{
+                    backgroundColor:
+                      item.type === 'previous' || item.type === 'next'
+                        ? 'transparent'
+                        : item.selected
+                        ? 'secondary'
+                        : '#E5E5E5',
+                  }}
+                  color="secondary"
+                />
+              );
+            }}
+          />
+        </>
+      ) : units && !units.length && !isError ? (
+        <Alert variant="filled" severity="info">
+          No Data Found
+        </Alert>
+      ) : (
+        <Alert variant="filled" severity="error">
+          Error Happend, Be Sure The Server is Working Fine.
+        </Alert>
+      )}
 
       {/* modal section */}
       <ModalImgs
