@@ -7,8 +7,6 @@ import { getUnits } from '@/utils/getUnits';
 // type HomeProps = { units: unit[] };
 
 export default function Home() {
-  // console.log(units);
-
   return (
     <>
       <Head>
@@ -25,13 +23,6 @@ export default function Home() {
 }
 
 export async function getServerSideProps() {
-  // const res = await fetch(`http://localhost:3005/listings?_page=1`);
-  // const data = await res.json();
-
-  // console.log(data);
-  // // Pass data to the page via props
-  // return { props: { units: data } };
-
   const queryClient = new QueryClient();
 
   const page = 1;

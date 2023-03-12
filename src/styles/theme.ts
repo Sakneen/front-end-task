@@ -49,11 +49,7 @@ let theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          // color: 'red',
           backgroundColor: '#F5F5F5',
-          // '& h1': {
-          //   color: 'black',
-          // },
         },
       },
     },

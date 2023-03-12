@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import Box from '@mui/material/Box';
@@ -18,12 +17,9 @@ import Image from 'next/image';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Stack from '@mui/material/Stack';
-import Skeleton from '@mui/material/Skeleton';
 import { useQuery } from '@tanstack/react-query';
 import { getUnits } from '@/utils/getUnits';
 import useDebounce from '@/hooks/useDebounce';
-import { Modal } from '@mui/material';
 import ModalImgs from './ModalImgs';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
@@ -50,16 +46,13 @@ const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.black,
     fontSize: 16,
   },
-  //   [`&.${tableCellClasses.body}`]: {
-  //     fontSize: 16,
-  //   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(even)': {
     backgroundColor: theme.palette.common.white,
   },
-  // hide last border
+
   '&:last-child td, &:last-child th': {
     border: 0,
   },
@@ -88,9 +81,7 @@ function TableList() {
     event: {},
     reason: 'backdropClick' | 'escapeKeyDown'
   ) => {
-    // if (reason !== 'backdropClick') {
     setOpenModal(false);
-    // }
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -103,11 +94,8 @@ function TableList() {
   };
 
   function handlePageChange(e: React.ChangeEvent<unknown>, value: number) {
-    console.log(value);
-    // setSelectedPage(value);
-    // const valueToFetch = Math.round(value / 2);
     const valueToFetch = value;
-    console.log('valueToFetch', valueToFetch);
+
     setPageToFetch(valueToFetch);
   }
 
@@ -115,23 +103,12 @@ function TableList() {
     setFilterValue(e.target.value);
   }
 
-  const {
-    data: units,
-    isPreviousData,
-    isSuccess,
-    isFetching,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<units>({
+  const { data: units, isError } = useQuery<units>({
     queryKey: ['units', pageToFetch, currentSort, debouncedFilter],
     queryFn: () => getUnits(pageToFetch, currentSort, debouncedFilter),
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-
-  console.log(units);
-  console.log(isError);
 
   return (
     <>
@@ -244,7 +221,6 @@ function TableList() {
             elevation={2}
             sx={{ backgroundColor: 'transparent' }}
           >
-            {/* <Paper elevation={3} ></Paper> */}
             <Table
               sx={{ minWidth: 700 }}
               aria-label="customized table"
@@ -265,27 +241,6 @@ function TableList() {
               <TableBody>
                 {units?.map((row) => (
                   <StyledTableRow key={row._id}>
-                    {/* <StyledTableCell align="left">
-                  {isLoading && isFetching ? <Skeleton /> : 'hereee'}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {units.length > 0 ? 'hereee' : <Skeleton />}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {units.length > 0 ? 'hereee' : <Skeleton />}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {units.length > 0 ? 'hereee' : <Skeleton />}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {units.length > 0 ? 'hereee' : <Skeleton />}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {units.length > 0 ? 'hereee' : <Skeleton />}
-                </StyledTableCell> */}
-                    {/* <StyledTableCell align="left">
-                  {!isLoading && isFetching ? <Skeleton /> : row.unit_id}
-                </StyledTableCell> */}
                     <StyledTableCell align="left">
                       {row.unit_id}
                     </StyledTableCell>
@@ -324,7 +279,7 @@ function TableList() {
                           onClick={() => handleOpenModal(row.photos)}
                         />
                       ) : (
-                        'No Pics Founds'
+                        'No Pics Found'
                       )}
                     </StyledTableCell>
                   </StyledTableRow>
@@ -350,16 +305,8 @@ function TableList() {
               }}
               color="primary"
               renderItem={(item) => {
-                // console.log(item);
-                // if (item.selected) {
-                //   item.color = 'secondary';
-                // } else {
-                //   item.color = 'primary';
-                // }
-                // if (item.type === 'previous') item.color = 'primary';
                 return (
                   <PaginationItem
-                    //     slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
                     {...item}
                     sx={{
                       backgroundColor:

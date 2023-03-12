@@ -1,10 +1,7 @@
-import { NextPage } from 'next';
 import Image from 'next/image';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // type Props = {};
@@ -15,14 +12,7 @@ function Nav() {
       <Typography variant="h5" component="h1">
         Dashboard
       </Typography>
-      {/* <Box
-        sx={{
-          flexGrow: 1,
-          marginBlockEnd: '1.5em',
-          // height: '1.9375em',
-          // paddingBlock: '1.9375em',
-        }}
-      > */}
+
       <AppBar
         position="static"
         sx={{
@@ -52,6 +42,7 @@ function Nav() {
             <Image
               src="/homeicon.svg"
               alt="home icon"
+              style={{ height: 'auto' }}
               width={12.67}
               height={12}
               priority
@@ -76,10 +67,8 @@ function Nav() {
           >
             Dashboard
           </Typography>
-          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
-      {/* </Box> */}
     </>
   );
 }

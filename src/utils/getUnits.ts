@@ -22,7 +22,7 @@ async function getUnits(
 
     return data;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     throw new Error('Error happend');
   }
 }
