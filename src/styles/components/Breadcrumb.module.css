@@ -1,0 +1,40 @@
+.breadcrumb{
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color-fifth);
+    padding: .8rem;
+    border-radius: .4rem;
+    margin-bottom: 2.4rem;
+}
+
+.breadcrumb_item {
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    letter-spacing: 0.4px;
+}
+
+.breadcrumb .active{
+    color: var(--text-color-second);
+}
+
+.breadcrumb_item a{
+    color: var(--text-color-third);
+    text-decoration-line: underline;
+}
+
+.breadcrumb_item+.breadcrumb_item::before {
+    content: '';
+    position: relative;
+    left: 0;
+    top: 50%;
+    transform:translateY(-50%);
+    margin: 0 1rem;
+    background-image: url(../../../public/Breadcrumb-arrow.svg);
+    height: .8rem;
+    width: .5rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+}

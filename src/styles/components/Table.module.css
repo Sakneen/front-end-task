@@ -1,0 +1,31 @@
+
+.dashboard__table{
+    background-color: #FFFFFF;
+    padding: 0.8rem 0 0;
+    border-radius: 0.4rem;
+    filter: drop-shadow(0rem 0.2rem 0.4rem rgba(0, 0, 0, 0.16));
+    overflow-x: scroll;
+}
+
+.dashboard__table__head{
+    padding: 0.8rem 1.6rem;
+    box-shadow: inset 0rem -0.1rem 0rem #E5E5E5;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.1rem;
+    color: var(--text-color-main);
+    min-width: 800px;
+}
+
+.dashboard__table__body{
+    min-width: 800px;
+}
+
+.dashboard__table__body__row{
+    padding: 1.6rem;
+    margin: 0;
+}
+
+.dashboard__table__body__row:nth-of-type(odd){
+    background-color: var(--bg-color-second);
+}
