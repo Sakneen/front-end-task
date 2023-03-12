@@ -2,18 +2,65 @@ import Head from "next/head";
 import { Breadcrumb, Icon, PageTitle, Pagination, Table } from "@/components";
 import Link from "next/link";
 import styles from "@/styles/pages/Dashboard.module.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function dashboard({ data }: any) {
   const [filteredUnits, setFilteredUnits] = useState(data);
+  const sortRef = useRef("");
 
+  // Filter input by unit id
   const handleIdFilter = (e: any) => {
-    // setValue(e.target.value);
     const filtered = data.filter((unit: any) =>
       unit.unit_id.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilteredUnits(filtered);
-    console.log(filteredUnits);
+  };
+
+  const handleSortById = (e: any) => {
+    sortRef.current.innerText = e.target.innerText;
+    const sortedUnits = filteredUnits.sort((a: any, b: any) =>
+      a.unit_id > b.unit_id ? 1 : b.unit_id > a.unit_id ? -1 : 0
+    );
+    setFilteredUnits(sortedUnits);
+  };
+
+  const handleSortByType = (e: any) => {
+    sortRef.current.innerText = e.target.innerText;
+    const sortedUnits = filteredUnits.sort((a: any, b: any) =>
+      a.unit_type > b.unit_type ? 1 : b.unit_type > a.unit_type ? -1 : 0
+    );
+    setFilteredUnits(sortedUnits);
+  };
+
+  const handleSortByPrice = (e: any) => {
+    sortRef.current.innerText = e.target.innerText;
+    const sortedUnits = filteredUnits.sort((a: any, b: any) =>
+      a.total_price > b.total_price ? 1 : b.total_price > a.total_price ? -1 : 0
+    );
+    setFilteredUnits(sortedUnits);
+  };
+
+  const sortReverse = () => {
+    if (sortRef.current.innerText === "Unit ID") {
+      const sortedUnits = filteredUnits.sort((a: any, b: any) =>
+        a.unit_id > b.unit_id ? -1 : b.unit_id > a.unit_id ? 1 : 0
+      );
+      setFilteredUnits(sortedUnits);
+    } else if (sortRef.current.innerText === "Unit Type") {
+      const sortedUnits = filteredUnits.sort((a: any, b: any) =>
+        a.unit_type > b.unit_type ? -1 : b.unit_type > a.unit_type ? 1 : 0
+      );
+      setFilteredUnits(sortedUnits);
+    } else if (sortRef.current.innerText === "Unit Price") {
+      const sortedUnits = filteredUnits.sort((a: any, b: any) =>
+        a.total_price > b.total_price
+          ? -1
+          : b.total_price > a.total_price
+          ? 1
+          : 0
+      );
+      setFilteredUnits(sortedUnits);
+    }
   };
 
   return (
@@ -43,15 +90,23 @@ export default function dashboard({ data }: any) {
             <div
               className={`d-flex align-items-center justify-content-end ${styles.dashboard__sort}`}
             >
-              <Icon icon="sort" size={"1.8rem"} />
+              <Link
+                href=""
+                role="button"
+                onClick={sortReverse}
+                className="d-flex align-items-center"
+              >
+                <Icon icon="sort" size={"1.8rem"} />
+              </Link>
               <h6>Sort by:</h6>
               <div className={`dropdown ${styles.dashboard__sort__dropdown}`}>
                 <Link
                   className="dropdown-toggle"
-                  href="#"
+                  href=""
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  ref={sortRef}
                 >
                   Unit ID
                 </Link>
@@ -62,7 +117,8 @@ export default function dashboard({ data }: any) {
                   <li>
                     <Link
                       className={`dropdown-item ${styles.dashboard__sort__dropdown__menu__item}`}
-                      href="#"
+                      href=""
+                      onClick={(e) => handleSortById(e)}
                     >
                       Unit ID
                     </Link>
@@ -70,7 +126,8 @@ export default function dashboard({ data }: any) {
                   <li>
                     <Link
                       className={`dropdown-item ${styles.dashboard__sort__dropdown__menu__item}`}
-                      href="#"
+                      href=""
+                      onClick={(e) => handleSortByType(e)}
                     >
                       Unit Type
                     </Link>
@@ -78,7 +135,8 @@ export default function dashboard({ data }: any) {
                   <li>
                     <Link
                       className={`dropdown-item ${styles.dashboard__sort__dropdown__menu__item}`}
-                      href="#"
+                      href=""
+                      onClick={(e) => handleSortByPrice(e)}
                     >
                       Unit Price
                     </Link>
