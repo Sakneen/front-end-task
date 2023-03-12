@@ -19,3 +19,5 @@ type unit = {
 };
 
 type units = unit[];
+
+export type { units };

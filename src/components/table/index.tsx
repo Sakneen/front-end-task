@@ -23,6 +23,7 @@ import useDebounce from '@/hooks/useDebounce';
 import ModalImgs from './ModalImgs';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { units } from '@/types';
 
 // type TableProps = {
 //   children: ReactNode;
