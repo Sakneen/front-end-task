@@ -2,15 +2,20 @@ import Head from "next/head";
 import { Breadcrumb, Icon, PageTitle, Pagination, Table } from "@/components";
 import Link from "next/link";
 import styles from "@/styles/pages/Dashboard.module.css";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
-export default function dashboard({ data }: any) {
+const Dashboard = ({ data }: any) => {
   const [filteredUnits, setFilteredUnits] = useState(data);
   const [sortDirectionByID, setSortDirectionByID] = useState(false);
   const [sortDirectionByType, setSortDirectionByType] = useState(false);
   const [sortDirectionByPrice, setSortDirectionByPrice] = useState(false);
   const sortRef = useRef("");
   const filterRef = useRef("");
+  // lightbox toggler
+  const [lightBoxVisible, setLightBoxVisible] = useState(false);
+  const [unitPhotos, setUnitPhotos] = useState([]);
 
   // Filter input by unit id
   const handleIdFilter = () => {
@@ -75,6 +80,20 @@ export default function dashboard({ data }: any) {
     }
     setFilteredUnits(sortedUnits);
   };
+
+  // handleLightBoxToggle
+  const handleLightBoxToggle = useCallback(
+    (photos: []) => {
+      const lightBoxPhotos: object[] = [];
+      setLightBoxVisible(!lightBoxVisible);
+      photos.map((photo) => {
+        lightBoxPhotos.push({ src: photo });
+      });
+      console.log(lightBoxPhotos);
+      setUnitPhotos(lightBoxPhotos);
+    },
+    [lightBoxVisible]
+  );
 
   return (
     <>
@@ -163,7 +182,10 @@ export default function dashboard({ data }: any) {
 
         <div className="row mb-4">
           <div className="col-md-12">
-            <Table units={filteredUnits} />
+            <Table
+              units={filteredUnits}
+              onLightBoxToggle={handleLightBoxToggle}
+            />
           </div>
         </div>
 
@@ -173,9 +195,15 @@ export default function dashboard({ data }: any) {
           </div>
         </div>
       </div>
+      <Lightbox
+        open={lightBoxVisible}
+        close={() => setLightBoxVisible(false)}
+        slides={unitPhotos}
+      />
+      {/* <FsLightbox toggler={lightBoxVisible} sources={unitPhotos} /> */}
     </>
   );
-}
+};
 
 export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3005/listings");
@@ -187,3 +215,5 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+export default Dashboard;

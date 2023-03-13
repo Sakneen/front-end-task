@@ -14,9 +14,10 @@ interface TableProps {
       photos: string[];
     }
   ];
+  onLightBoxToggle: Function;
 }
 
-const Table: FunctionComponent<TableProps> = ({ units }) => {
+const Table: FunctionComponent<TableProps> = ({ units, onLightBoxToggle }) => {
   return (
     <div className={styles.table}>
       <div className={styles.table__head}>
@@ -62,6 +63,7 @@ const Table: FunctionComponent<TableProps> = ({ units }) => {
                       width={40}
                       height={40}
                       role="button"
+                      onClick={() => onLightBoxToggle(unit.photos)}
                     />
                   ) : (
                     ""

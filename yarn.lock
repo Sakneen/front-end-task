@@ -4382,6 +4382,11 @@ yarn-check@^0.0.3:
     throat "^2.0.2"
     update-notifier "^2.1.0"
 
+yet-another-react-lightbox@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/yet-another-react-lightbox/-/yet-another-react-lightbox-2.6.1.tgz#d5e5471c85a98492f250650d7ccbdf459f856fca"
+  integrity sha512-qb3+X7DA+0ANRF/C1iSVFkUlBCa9Z22pe2OvSMN9Y51BeO/EnNW1FmxTh6a7ITtZlFuS//e8q+DwfxxtXwCm2Q==
+
 yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
