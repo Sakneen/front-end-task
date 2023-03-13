@@ -7,7 +7,7 @@ import { fetchData } from '@/Store/filterReducer'
 import {useDispatch} from 'react-redux'
 
 const Home  = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   useEffect(() => {
     dispatch(fetchData())
   } ,[dispatch])

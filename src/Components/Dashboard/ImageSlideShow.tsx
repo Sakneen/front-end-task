@@ -10,6 +10,12 @@ import "swiper/css/scrollbar";
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
+type Params = {
+  open : boolean,
+  images : string[],
+  handleClose : () => void;
+}
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -20,7 +26,7 @@ const style = {
   outline : 'none'
 };
 
-const ImageSlideShow = ({images , open , handleClose}) => {
+const ImageSlideShow = ({images , open , handleClose} : Params) => {
 
   return (
 
@@ -42,7 +48,7 @@ const ImageSlideShow = ({images , open , handleClose}) => {
           style={{userSelect : 'none' , aspectRatio : '3/2' , width : '70%'}}
           navigation
         >
-          {images.map((img , imgIndex) => {
+          {images.map((img : string , imgIndex : number) => {
             return (
               <SwiperSlide className="" key={imgIndex}>
                 <img

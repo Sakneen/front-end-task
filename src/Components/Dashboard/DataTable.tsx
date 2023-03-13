@@ -4,38 +4,55 @@ import ImageSlideShow from "./ImageSlideShow";
 import TableToolbar from "./TableToolbar";
 import { useSelector} from 'react-redux';
 
+
+type Data = {
+  _id : string,
+  for_sale : boolean,
+  photos : string[],
+  unit_id : string,
+  total_price : string,
+  unit_type : string,
+  bua : number,
+  useSelector : () => void;
+}
+
+const Style = {
+  fontSize : '16px',
+  fontWeight : 700,
+  textAlign : 'center'
+}
+
 function EnhancedTableHead() {
-  const TableCellStyle = {
-    fontSize : '16px',
-    fontWeight : 700,
-    textAlign : 'center'
-  }
+
   return (
     <TableHead>
-           <TableRow>
-            <TableCell  style={TableCellStyle}>Unit ID</TableCell>
-            <TableCell  style={TableCellStyle}>Unit Type</TableCell>
-            <TableCell  style={TableCellStyle}>Price</TableCell>
-            <TableCell  style={TableCellStyle}>Building up area</TableCell>
-            <TableCell  style={TableCellStyle}>For sale</TableCell>
-            <TableCell  style={TableCellStyle}>Gallery</TableCell>
+          <TableRow>
+            <TableCell sx={Style} >Unit ID</TableCell>
+            <TableCell sx={Style} >Unit Type</TableCell>
+            <TableCell sx={Style} >Price</TableCell>
+            <TableCell sx={Style} >Building up area</TableCell>
+            <TableCell sx={Style} >For sale</TableCell>
+            <TableCell sx={Style} >Gallery</TableCell>
           </TableRow>
     </TableHead>
   );
 }
 
+type State = {
+  data : Data[]
+}
 
 
 export default function DataTable() {
   const [img , setImages] = useState<string[]>([])
-  let rows = useSelector(state => state.data)
+  let rows : Data[] = useSelector((state : State) => state.data)
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
- const array =  useCallback((images) => {
+ const array =  useCallback((images : Data) => {
     rows?.map((item) => {
         if(item._id == images._id)
             {
@@ -66,11 +83,11 @@ export default function DataTable() {
             aria-labelledby="tableTitle"
           >
             <EnhancedTableHead />
-            
+
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
+                .map((row) => {
 
                   return (
                     <TableRow

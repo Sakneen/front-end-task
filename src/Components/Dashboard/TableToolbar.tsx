@@ -8,7 +8,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { InputField } from "@/styles/dashboard/datatableStyle";
 
 const TableToolbar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const [selectValue, setSelectValue] = useState("");
 
   useEffect(() => {

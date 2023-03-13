@@ -1,4 +1,4 @@
-import {Typography , TextField  , InputBase} from '@mui/material'
+import {Typography , TableCell  , InputBase} from '@mui/material'
 import { styled } from '@mui/material/styles';
 
 
@@ -16,3 +16,9 @@ export const InputField = styled(InputBase)(({theme}) => ({
     width : '50%',
 },
 }));
+
+export const TableCellStyle = styled(TableCell)(() => ({
+  fontSize : '16px',
+  fontWeight : 700,
+  textAlign : 'center'
+}))
