@@ -2,65 +2,78 @@ import Head from "next/head";
 import { Breadcrumb, Icon, PageTitle, Pagination, Table } from "@/components";
 import Link from "next/link";
 import styles from "@/styles/pages/Dashboard.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function dashboard({ data }: any) {
   const [filteredUnits, setFilteredUnits] = useState(data);
+  const [sortDirectionByID, setSortDirectionByID] = useState(false);
+  const [sortDirectionByType, setSortDirectionByType] = useState(false);
+  const [sortDirectionByPrice, setSortDirectionByPrice] = useState(false);
   const sortRef = useRef("");
+  const filterRef = useRef("");
 
   // Filter input by unit id
-  const handleIdFilter = (e: any) => {
+  const handleIdFilter = () => {
     const filtered = data.filter((unit: any) =>
-      unit.unit_id.toLowerCase().includes(e.target.value.toLowerCase())
+      unit.unit_id.toLowerCase().includes(filterRef.current.value.toLowerCase())
     );
     setFilteredUnits(filtered);
   };
 
-  const handleSortById = (e: any) => {
-    sortRef.current.innerText = e.target.innerText;
-    const sortedUnits = filteredUnits.sort((a: any, b: any) =>
-      a.unit_id > b.unit_id ? 1 : b.unit_id > a.unit_id ? -1 : 0
-    );
-    setFilteredUnits(sortedUnits);
-  };
+  // Handle dropdown and button sorting
+  const handleSort = (e: any) => {
+    const sortLabel = e.target.innerText;
+    let sortedUnits: any[] = [...filteredUnits];
 
-  const handleSortByType = (e: any) => {
-    sortRef.current.innerText = e.target.innerText;
-    const sortedUnits = filteredUnits.sort((a: any, b: any) =>
-      a.unit_type > b.unit_type ? 1 : b.unit_type > a.unit_type ? -1 : 0
-    );
-    setFilteredUnits(sortedUnits);
-  };
+    sortLabel && (sortRef.current.innerText = sortLabel);
 
-  const handleSortByPrice = (e: any) => {
-    sortRef.current.innerText = e.target.innerText;
-    const sortedUnits = filteredUnits.sort((a: any, b: any) =>
-      a.total_price > b.total_price ? 1 : b.total_price > a.total_price ? -1 : 0
-    );
-    setFilteredUnits(sortedUnits);
-  };
-
-  const sortReverse = () => {
     if (sortRef.current.innerText === "Unit ID") {
-      const sortedUnits = filteredUnits.sort((a: any, b: any) =>
-        a.unit_id > b.unit_id ? -1 : b.unit_id > a.unit_id ? 1 : 0
-      );
-      setFilteredUnits(sortedUnits);
-    } else if (sortRef.current.innerText === "Unit Type") {
-      const sortedUnits = filteredUnits.sort((a: any, b: any) =>
-        a.unit_type > b.unit_type ? -1 : b.unit_type > a.unit_type ? 1 : 0
-      );
-      setFilteredUnits(sortedUnits);
-    } else if (sortRef.current.innerText === "Unit Price") {
-      const sortedUnits = filteredUnits.sort((a: any, b: any) =>
-        a.total_price > b.total_price
-          ? -1
-          : b.total_price > a.total_price
+      setSortDirectionByID(!sortDirectionByID);
+      sortedUnits.sort((a: any, b: any) =>
+        sortDirectionByID
+          ? a.unit_id > b.unit_id
+            ? 1
+            : b.unit_id > a.unit_id
+            ? -1
+            : 0
+          : b.unit_id > a.unit_id
           ? 1
+          : a.unit_id > b.unit_id
+          ? -1
           : 0
       );
-      setFilteredUnits(sortedUnits);
+    } else if (sortRef.current.innerText === "Unit Type") {
+      setSortDirectionByType(!sortDirectionByType);
+      sortedUnits.sort((a: any, b: any) =>
+        sortDirectionByType
+          ? a.unit_type > b.unit_type
+            ? 1
+            : b.unit_type > a.unit_type
+            ? -1
+            : 0
+          : b.unit_type > a.unit_type
+          ? 1
+          : a.unit_type > b.unit_type
+          ? -1
+          : 0
+      );
+    } else if (sortRef.current.innerText === "Unit Price") {
+      setSortDirectionByPrice(!sortDirectionByPrice);
+      sortedUnits.sort((a: any, b: any) =>
+        sortDirectionByPrice
+          ? a.total_price > b.total_price
+            ? 1
+            : b.total_price > a.total_price
+            ? -1
+            : 0
+          : b.total_price > a.total_price
+          ? 1
+          : a.total_price > b.total_price
+          ? -1
+          : 0
+      );
     }
+    setFilteredUnits(sortedUnits);
   };
 
   return (
@@ -82,7 +95,8 @@ export default function dashboard({ data }: any) {
               <input
                 type="text"
                 placeholder="ex: 45785"
-                onChange={(e) => handleIdFilter(e)}
+                onChange={handleIdFilter}
+                ref={filterRef}
               />
             </div>
           </div>
@@ -93,8 +107,8 @@ export default function dashboard({ data }: any) {
               <Link
                 href=""
                 role="button"
-                onClick={sortReverse}
-                className="d-flex align-items-center"
+                onClick={handleSort}
+                className={`d-flex align-items-center ${styles.dashboard__sort__btn}`}
               >
                 <Icon icon="sort" size={"1.8rem"} />
               </Link>
@@ -118,7 +132,7 @@ export default function dashboard({ data }: any) {
                     <Link
                       className={`dropdown-item ${styles.dashboard__sort__dropdown__menu__item}`}
                       href=""
-                      onClick={(e) => handleSortById(e)}
+                      onClick={(e) => handleSort(e)}
                     >
                       Unit ID
                     </Link>
@@ -127,7 +141,7 @@ export default function dashboard({ data }: any) {
                     <Link
                       className={`dropdown-item ${styles.dashboard__sort__dropdown__menu__item}`}
                       href=""
-                      onClick={(e) => handleSortByType(e)}
+                      onClick={(e) => handleSort(e)}
                     >
                       Unit Type
                     </Link>
@@ -136,7 +150,7 @@ export default function dashboard({ data }: any) {
                     <Link
                       className={`dropdown-item ${styles.dashboard__sort__dropdown__menu__item}`}
                       href=""
-                      onClick={(e) => handleSortByPrice(e)}
+                      onClick={(e) => handleSort(e)}
                     >
                       Unit Price
                     </Link>
