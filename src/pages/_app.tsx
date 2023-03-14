@@ -1,8 +1,9 @@
+import React from "react";
+import { useEffect } from "react";
+import type { AppProps } from "next/app";
+import { Layout } from "@/components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { useEffect } from "react";
-import { Layout } from "@/components";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
