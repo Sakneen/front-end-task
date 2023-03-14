@@ -12,8 +12,8 @@ const Dashboard = ({ data }: any) => {
   const [sortDirectionByID, setSortDirectionByID] = useState(false);
   const [sortDirectionByType, setSortDirectionByType] = useState(false);
   const [sortDirectionByPrice, setSortDirectionByPrice] = useState(false);
-  const sortRef = useRef("");
-  const filterRef = useRef("");
+  const sortRef = useRef<any>("");
+  const filterRef = useRef<any>("");
   // lightbox toggler
   const [lightBoxVisible, setLightBoxVisible] = useState(false);
   const [unitPhotos, setUnitPhotos] = useState([]);
