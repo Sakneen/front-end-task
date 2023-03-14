@@ -2,10 +2,10 @@ import Style from "./../styles/Navbar.module.css";
 
 const Navbar = () => {
     return (
-        <nav className={ Style.nav}>
-            <div className=" ">
+        <nav className={ Style.nav + " shadow"}>
+            <div>
                 <div className=" logo">
-                    <h3>this is logo</h3>
+                    <h3>logo</h3>
                 </div>
             </div>
         </nav>

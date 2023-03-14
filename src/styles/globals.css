@@ -1,35 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
-    background-color: #F5F5F5;
+  font-family: "DM Sans", sans-serif;
+  background-color: #f5f5f5;
 }
 
 .visually {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .index {
-    z-index: 99999;
+  z-index: 99999;
 }
 
-.carousel-indicators [data-bs-target]{
-    visibility: hidden;
+.carousel-indicators [data-bs-target] {
+  visibility: hidden;
 }
 
-.back{
-    background-color: black;
-    opacity: 80%;
+.back {
+  background-color: black;
+  opacity: 80%;
 }
 
-.close{
-    z-index: 99999;
-    width: 40px;
-    height: 40px ;
+.close {
+  z-index: 99999;
+  width: 40px;
+  height: 40px;
+}
+
+.pagenation {
+  width: 40px;
+  height: 40px;
+}
+
+.dach {
+  cursor: pointer;
+  width: 30px;
+  height: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.dach-1 {
+  width: 30px;
+  top: 0px;
+  left: 0px;
+}
+
+.dach-2 {
+  width: 20px;
+  top: 5px;
+  left: 5px;
+}
+
+.dach-3 {
+  width: 10px;
+  top: 10px;
+  left: 10px;
+}
+
+/* media query */
+
+/* 1 */
+
+@media screen and (max-width: 576px) and (min-width: 0px) {
+  .font_1 {
+    font-size: 0.8rem;
+  }
+
+  .not_of_sale {
+    font-size: 0.7rem !important;
+  }
+
+  .Table_titles {
+    padding: 0px !important;
+  }
+
+  .Build_up_area {
+    text-align: center;
+  }
+}
+
+/* 2 */
+
+@media screen and (max-width: 768px) and (min-width: 577px) {
+  .not_of_sale {
+    font-size: 0.75rem !important;
+  }
+
+  .Build_up_area {
+    text-align: center;
+  }
+}
+
+/* 3 */
+
+@media screen and (max-width: 992px) and (min-width: 769px) {
+  .not_of_sale {
+    font-size: 0.7rem !important;
+  }
 }
