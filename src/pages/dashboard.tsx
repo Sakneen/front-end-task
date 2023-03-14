@@ -19,7 +19,7 @@ const Dashboard = ({ data }: any) => {
   const [unitPhotos, setUnitPhotos] = useState([]);
 
   // Handle pagination
-  const handleSetCurrentUnits = useCallback((paginatedUnits: []) => {
+  const handleCurrentUnits = useCallback((paginatedUnits: []) => {
     setCurrentUnits(paginatedUnits);
   }, []);
 
@@ -199,7 +199,7 @@ const Dashboard = ({ data }: any) => {
           <div className="col-md-12">
             <Pagination
               items={filteredUnits}
-              setCurrentUnits={handleSetCurrentUnits}
+              currentUnits={handleCurrentUnits}
             />
           </div>
         </div>
