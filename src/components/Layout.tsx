@@ -1,4 +1,4 @@
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import { PropsWithChildren } from "react";
 import { DM_Sans } from "next/font/google";
 import Navbar from "./Navbar";
@@ -10,7 +10,7 @@ const dm_sans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-export default function Layout({ children }: PropsWithChildren) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={dm_sans.variable}>
       <Navbar />
