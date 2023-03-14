@@ -33,5 +33,9 @@
     "eslint-config-next": "13.2.3",
     "json-server": "^0.17.2",
     "yarn-check": "^0.0.3"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/AhmedElSayedSaleh/front-end-task.git",
+  "author": "ahmedelsayedsaleh <ahmed0elsayed0saleh@gmail.com>",
+  "license": "MIT"
 }
