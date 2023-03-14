@@ -7,7 +7,7 @@ import "yet-another-react-lightbox/styles.css";
 import styles from "@/styles/pages/Dashboard.module.css";
 
 const Dashboard = ({ data }: any) => {
-  const [currentUnits, setCurrentUnits] = useState([]);
+  const [currentUnits, setCurrentUnits] = useState<any>([]);
   const [filteredUnits, setFilteredUnits] = useState(data);
   const [sortDirectionByID, setSortDirectionByID] = useState(false);
   const [sortDirectionByType, setSortDirectionByType] = useState(false);
@@ -16,7 +16,7 @@ const Dashboard = ({ data }: any) => {
   const filterRef = useRef<any>("");
   // lightbox toggler
   const [lightBoxVisible, setLightBoxVisible] = useState(false);
-  const [unitPhotos, setUnitPhotos] = useState([]);
+  const [unitPhotos, setUnitPhotos] = useState<any>([]);
 
   // Handle pagination
   const handleCurrentUnits = useCallback((paginatedUnits: []) => {
@@ -90,12 +90,11 @@ const Dashboard = ({ data }: any) => {
   // handleLightBoxToggle
   const handleLightBoxToggle = useCallback(
     (photos: []) => {
-      const lightBoxPhotos: object[] = [];
+      const lightBoxPhotos: any[] = [];
       setLightBoxVisible(!lightBoxVisible);
       photos.map((photo) => {
         lightBoxPhotos.push({ src: photo });
       });
-      console.log(lightBoxPhotos);
       setUnitPhotos(lightBoxPhotos);
     },
     [lightBoxVisible]
