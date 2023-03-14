@@ -215,7 +215,7 @@ const Dashboard = ({ data }: any) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3005/listings");
+  const res = await fetch("https://sakneen-db.vercel.app/listings");
   const data = await res.json();
 
   return {
