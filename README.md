@@ -1,3 +1,7 @@
+# Live Demo
+
+[Click Here](https://sakneen-front-end-task-git-feature-ahm-b1215f-ahmedelsayedsaleh.vercel.app)
+
 # Sakneen Front End Task
 
 :wave: This is a NextJS React app interview challenge. Please fork this repo, and push your code to a branch in your forked repo (following the instructions below).
@@ -7,22 +11,26 @@ In this exercise you will be implementing a new page that will have a table disp
 Note, it's not required to implement all these features, but implement what you can, Also, do the best you can for file structure and code best practices, Good Luck.
 
 ## Requirements
+
 - Create a page that **mimics** the given design in terms of style.
 - The table **must support** pagination and sorting functionalities
 - The table **must support** searching by unit id functionally
 - Clicking on the image in the gallery column should open a **light box** viewing all the images for that unit
 - Add some unit test cases as you can.
-- Let your imagination make  the design of task responsive.
+- Let your imagination make the design of task responsive.
 
 ## Notes
+
 - The `API` used for fetching the data is `http://localhost:3005/listings`
 - Feel free to add any cool tricks showing off your skills (testing, caching, SEO, re-rendering optimizations...).
 - If anything is ambiguous or not clear, update the `README.MD` file with your assumptions
 - The total number of records returned from the API is **50**
 - we use the [json server](https://www.npmjs.com/package/json-server) spec.
+
 ## API Specification
 
-### Response 
+### Response
+
 ```js
 [{
 _id: "541kn1i4j51092j45i124nj" // The database generated id for the given record
@@ -39,14 +47,15 @@ photos:[
 ```
 
 ### Input
+
 - `_page`: A number to indicate the page needed.
 - `_limit`: An optional parameter to indicate the limit of the result set size
-- `_sort`: An optional parameter to sort by a certain field name 
+- `_sort`: An optional parameter to sort by a certain field name
 - `_order`: An optional parameter for sort direction (asc or desc)
 - `unitId`: Used to filter the units with their unit id value
 
-
 ## Instructions for submit
+
 1. Fork this repository
 2. create feature branch like: `feature/<your-full-name>`
 3. Open pull request from your branch on our repository

@@ -24,7 +24,7 @@
 }
 
 .breadcrumb_item+.breadcrumb_item::before {
-    content: '';
+    content: ''!important;
     position: relative;
     left: 0;
     top: 50%;
