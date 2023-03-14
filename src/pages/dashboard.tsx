@@ -1,12 +1,13 @@
 import Head from "next/head";
-import { Breadcrumb, Icon, PageTitle, Pagination, Table } from "@/components";
 import Link from "next/link";
-import styles from "@/styles/pages/Dashboard.module.css";
 import { useCallback, useRef, useState } from "react";
+import { Breadcrumb, Icon, PageTitle, Table, Pagination } from "@/components";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import styles from "@/styles/pages/Dashboard.module.css";
 
 const Dashboard = ({ data }: any) => {
+  const [currentUnits, setCurrentUnits] = useState([]);
   const [filteredUnits, setFilteredUnits] = useState(data);
   const [sortDirectionByID, setSortDirectionByID] = useState(false);
   const [sortDirectionByType, setSortDirectionByType] = useState(false);
@@ -17,13 +18,18 @@ const Dashboard = ({ data }: any) => {
   const [lightBoxVisible, setLightBoxVisible] = useState(false);
   const [unitPhotos, setUnitPhotos] = useState([]);
 
+  // Handle pagination
+  const handleSetCurrentUnits = useCallback((paginatedUnits: []) => {
+    setCurrentUnits(paginatedUnits);
+  }, []);
+
   // Filter input by unit id
-  const handleIdFilter = () => {
+  const handleIdFilter = useCallback(() => {
     const filtered = data.filter((unit: any) =>
       unit.unit_id.toLowerCase().includes(filterRef.current.value.toLowerCase())
     );
     setFilteredUnits(filtered);
-  };
+  }, [data]);
 
   // Handle dropdown and button sorting
   const handleSort = (e: any) => {
@@ -183,24 +189,27 @@ const Dashboard = ({ data }: any) => {
         <div className="row mb-4">
           <div className="col-md-12">
             <Table
-              units={filteredUnits}
+              units={currentUnits}
               onLightBoxToggle={handleLightBoxToggle}
             />
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-12">
-            <Pagination />
+        <div className="row mb-4">
+          <div className="col-md-12">
+            <Pagination
+              items={filteredUnits}
+              setCurrentUnits={handleSetCurrentUnits}
+            />
           </div>
         </div>
       </div>
+
       <Lightbox
         open={lightBoxVisible}
         close={() => setLightBoxVisible(false)}
         slides={unitPhotos}
       />
-      {/* <FsLightbox toggler={lightBoxVisible} sources={unitPhotos} /> */}
     </>
   );
 };
