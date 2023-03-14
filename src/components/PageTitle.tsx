@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { Fragment, PropsWithChildren } from "react";
 import styles from "@/styles/components/PageTitle.module.css";
 
 export default function PageTitle({ children }: PropsWithChildren) {

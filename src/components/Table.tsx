@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FunctionComponent, useState } from "react";
 import styles from "@/styles/components/Table.module.css";
 import Image from "next/image";

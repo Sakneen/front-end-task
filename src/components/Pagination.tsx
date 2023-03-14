@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 import styles from "@/styles/components/Pagination.module.css";
