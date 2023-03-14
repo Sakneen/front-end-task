@@ -214,7 +214,7 @@ const Dashboard = ({ data }: any) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch("http://localhost:3005/listings");
   const data = await res.json();
 
