@@ -1,0 +1,40 @@
+@import "../../styles/common";
+
+.home {
+  padding-top: 10px;
+  h2 {
+    padding-top: 30px;
+  }
+  .head {
+    background-color: $white;
+    padding: 10px;
+    margin-top: 16px;
+    color: $gray_1;
+    display: flex;
+    align-items: center;
+  }
+  .img {
+    display: inline;
+  }
+
+  .link {
+    padding: 0 14px;
+  }
+
+  .filters {
+    @include flex($justify: space-between);
+    margin: 30px 0px;
+
+    @media (max-width: 600px) {
+      & {
+        display: block;
+      }
+    }
+  }
+
+  .not-found {
+    text-align: center;
+
+    padding: 50px 0;
+  }
+}

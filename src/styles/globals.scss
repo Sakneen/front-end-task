@@ -1,0 +1,66 @@
+@import "./variable.scss";
+@import './reactSlick.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: $gray_2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+input,
+select {
+  padding: 7px 8px;
+  outline: none;
+  border: none;
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+ 
+}
+
+table td,
+table th {
+  padding: 8px;
+}
+table tr:nth-child(odd) {
+  background-color: $white;
+}
+
+table tr:nth-child(even) {
+  background-color: $gray_3;
+}
+
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+ font-weight: 400;
+
+}

@@ -1,0 +1,46 @@
+.next,
+.prev {
+  top: 50%;
+  font-size: 24px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 1;
+  position: fixed;
+}
+.next {
+  right: 20px;
+  & {
+    @media (max-width: 400px) {
+      right: 0;
+    }
+  }
+}
+.prev {
+  left: 20px;
+  & {
+    @media (max-width: 400px) {
+      left: 0;
+    }
+  }
+}
+
+.slick-dots {
+  bottom: auto;
+  position: relative;
+  margin-top: 10px;
+  li button:before {
+    font-family: "slick";
+    font-size: 6px;
+    line-height: 20px;
+  }
+  li.slick-active button:before {
+    opacity: 1;
+
+  }
+}
+.slick-slide {
+  padding: 0 7px;
+}
+.slick-list {
+  text-align: -webkit-center;
+}

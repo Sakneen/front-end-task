@@ -1,0 +1,49 @@
+@import "../../styles/common";
+
+.pagination {
+  padding-top: 20px;
+  padding-bottom: 28px;
+  @include flex($display: flex, $justify: center);
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  ul {
+    @include flex($display: flex, $justify: center);
+    list-style: none;
+    li {
+      margin-top: 10px;
+      margin-right: 3px;
+      background: $gray_3;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      cursor: pointer;
+    }
+    @include screen-mobile-300 {
+      & {
+        display: block;
+      }
+    }
+  }
+  .active {
+    background-color: $blue;
+    color: $white;
+  }
+  .disabled {
+    background-color: $gray_1;
+    color: $white;
+    cursor: not-allowed;
+  }
+  span {
+    padding: 5px 9px;
+    border-radius: 50%;
+    color: $white;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,9 @@
+@import "../../styles/common";
+
+.navbar {
+  background-color: $blue;
+  padding: 20px 0px;
+  svg {
+    filter: brightness();
+  }
+}

@@ -1,0 +1,28 @@
+@import "../../styles/common";
+
+.sale {
+  color: white;
+  padding: 6px 5px;
+  font-size: 11px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table {
+    overflow-x: auto;
+  .forSale {
+    background-color: $blue;
+    @extend .sale;
+  }
+
+  .notForSale {
+    background-color: $gray_1;
+    @extend .sale;
+  }
+
+  .img {
+    cursor: pointer;
+  }
+}

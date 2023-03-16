@@ -1,0 +1,8 @@
+@mixin screen-mobile-300 {
+  @media only screen and (max-width: 300px) {
+    @-ms-viewport {
+      width: 300px;
+    }
+    @content;
+  }
+}

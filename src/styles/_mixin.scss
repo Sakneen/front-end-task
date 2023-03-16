@@ -1,0 +1,12 @@
+@mixin flex($display: flex, $justify: center, $align: center, $flexdir: auto) {
+    display: $display;
+    @if $justify != auto {
+      justify-content: $justify;
+    }
+    @if $align != auto {
+      align-items: $align;
+    }
+    @if $flexdir != auto {
+      flex-direction: $flexdir;
+    }
+  }
