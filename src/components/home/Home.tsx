@@ -8,6 +8,7 @@ import Pagination from "../pagination/Pagination";
 import { UnitObj } from "../../types/UnitObj.type";
 import { fetchPageData, fetchAllData } from "../../services/getData";
 
+// Home
 const Home = () => {
   const [tableData, setTableData] = useState<UnitObj[]>([]);
   const [data, setData] = useState<UnitObj[]>([]);
