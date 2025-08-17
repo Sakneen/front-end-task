@@ -1,20 +1,21 @@
+// src/types/index.ts
 /**
  * Property Listing Types
- * These interfaces define the shape of data from the API
  */
 
 export interface PropertyListing {
-  _id: string;
+  _id: string;            // 👈 string (matches db.json)
   unit_id: string;
-  unit_type: 'apartment' | 'villa' | 'penthouse' | 'townhouse';
+  unit_type: string;      // free string to match all values in db.json
   total_price: number;
   for_sale: boolean;
   photos: string[];
-  bua?: number; // Built-up area
+  bua?: number;
+  status: 'available' | 'reserved' | 'sold' | 'unavailable';
 }
 
-export interface APIResponse<T> {
-  data: T[];
+export interface APIResponse {
+  data: PropertyListing[];
   total: number;
   page: number;
   limit: number;
@@ -38,7 +39,6 @@ export interface ListingFilters extends PaginationParams, SearchParams {
   sort?: SortParams;
 }
 
-// Component Props Types
 export interface TableProps {
   listings: PropertyListing[];
   loading?: boolean;
@@ -69,7 +69,6 @@ export interface LightboxProps {
   currentIndex?: number;
 }
 
-// Redux Store Types
 export interface RootState {
   listings: ListingsState;
 }
